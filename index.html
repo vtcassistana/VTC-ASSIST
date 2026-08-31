@@ -4,420 +4,162 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#7147e8">
-
 <title>VTC ASSIST</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f7f7fa;
-  color:#222;
-  padding-bottom:90px;
+ margin:0;font-family:Arial,sans-serif;background:#f7f7fa;color:#222;
+ font-size:17px;padding-bottom:85px
 }
-
-header{
-  padding:28px 24px 18px;
-  background:#fff;
-}
-
-h1{
-  margin:0;
-  font-size:32px;
-}
-
-h2{
-  font-size:22px;
-  margin:10px 0 16px;
-}
-
-.subtitle{
-  color:#777;
-  margin-top:6px;
-  font-size:16px;
-}
-
-.container{
-  padding:0 20px 30px;
-  max-width:700px;
-  margin:auto;
-}
+header{padding:26px 22px 16px;background:#fff}
+h1{margin:0;font-size:31px}
+h2{font-size:22px}
+.subtitle{color:#777;margin-top:6px}
+.container{padding:0 18px 30px;max-width:760px;margin:auto}
 
 .card{
-  background:#fff;
-  border:1px solid #e8e8ed;
-  border-radius:22px;
-  padding:20px;
-  margin:16px 0;
-  box-shadow:0 3px 14px rgba(0,0,0,.06);
+ background:#fff;border:1px solid #e5e3ea;border-radius:22px;
+ padding:20px;margin:16px 0;box-shadow:0 3px 14px #0000000b
 }
-
-.vehicle{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  cursor:pointer;
-}
-
-.vehicle-icon{
-  font-size:40px;
-}
-
-.vehicle-title{
-  font-size:19px;
-  font-weight:bold;
-}
-
-.muted{
-  color:#888;
-  margin-top:5px;
-}
+.vehicle{display:flex;align-items:center;gap:15px;cursor:pointer}
+.vehicle-icon{font-size:40px}
+.vehicle-title{font-size:20px;font-weight:bold}
+.muted{color:#888;margin-top:6px}
 
 .btn{
-  width:100%;
-  border:0;
-  border-radius:15px;
-  padding:16px;
-  font-size:17px;
-  margin-top:10px;
-  cursor:pointer;
+ width:100%;border:0;border-radius:15px;padding:16px;
+ font-size:18px;margin-top:10px
 }
+.primary{background:#7147e8;color:white}
+.secondary{background:#f0edfa;color:#5d3ac7}
+.danger{background:#fff0f0;color:#a33}
 
-.primary{
-  background:#7147e8;
-  color:white;
+input,select{
+ width:100%;padding:15px;border:1px solid #d8d6df;
+ border-radius:13px;font-size:17px;margin:7px 0 14px;
+ background:white;color:#222
 }
+label{display:block;font-weight:bold;margin-top:6px}
+.help{font-size:15px;color:#777;line-height:1.45;margin:-5px 0 14px}
 
-.secondary{
-  background:#f0eef9;
-  color:#5d3ac7;
-}
-
-.danger{
-  background:#fff0f0;
-  color:#b33;
-}
-
-.btn:disabled{
-  opacity:.5;
-}
-
-label{
-  display:block;
-  font-weight:bold;
-  margin-top:14px;
-  margin-bottom:6px;
-}
-
-input,
-select{
-  width:100%;
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:13px;
-  font-size:16px;
-  background:#fff;
-}
-
-input[type="file"]{
-  display:none;
-}
-
-.offer{
-  background:linear-gradient(120deg,#7546e8,#9b55df);
-  color:white;
-  border-radius:22px;
-  padding:22px;
-  margin-top:20px;
-}
-
-.offer h2{
-  margin:0 0 8px;
-}
-
-.offer p{
-  margin:6px 0;
-}
-
-.alert-info{
-  background:#eefaf2;
-  color:#277044;
-  border-radius:15px;
-  padding:16px;
-  margin:15px 0;
-  line-height:1.5;
-}
-
-.warning{
-  background:#fff8df;
-  border-color:#eed37a;
-}
-
-.good{
-  background:#effaf1;
-  border-color:#b7dfbd;
-}
-
-.bad{
-  background:#fff0f0;
-  border-color:#efb0b0;
-}
-
-.neutral{
-  background:#fff;
-  border-color:#e8e8ed;
-}
+.page{display:none}
+.page.active{display:block}
 
 .doc{
-  border:1px solid #eee;
-  border-radius:18px;
-  padding:17px;
-  margin:12px 0;
-  background:#fff;
+ background:white;border:1px solid #ddd;border-radius:18px;
+ padding:17px;margin:12px 0
 }
+.good{background:#effaf1;border-color:#b7dfbd}
+.warning{background:#fff8df;border-color:#eed37a}
+.bad{background:#fff0f0;border-color:#efb7b7}
+.neutral{background:white}
 
 .pill{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:20px;
-  background:#eee;
-  margin-right:5px;
-  font-size:13px;
+ display:inline-block;padding:6px 10px;border-radius:20px;
+ background:#eee;font-size:14px
 }
+.doc-title{font-size:19px;font-weight:bold;margin-top:10px}
+.doc p{line-height:1.4}
+.actions{display:flex;gap:10px}
+.actions .btn{flex:1}
 
-.doc-title{
-  font-size:18px;
-  font-weight:bold;
-  margin-top:10px;
+.alert-info{
+ background:#eefaf2;color:#277044;border-radius:15px;
+ padding:15px;line-height:1.45;margin:15px 0
 }
-
-.doc-row{
-  margin-top:10px;
-  line-height:1.5;
+.offer{
+ background:linear-gradient(120deg,#7546e8,#9b55df);
+ color:white;border-radius:20px;padding:22px;margin-top:20px
 }
-
-.doc-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:12px;
-}
-
-.doc-buttons .btn{
-  margin-top:0;
-}
-
-.empty{
-  color:#888;
-  background:#f1f0f5;
-  border-radius:15px;
-  padding:18px;
-  text-align:center;
-}
-
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
-
-.scan-box{
-  text-align:center;
-  padding:12px 0;
-}
-
-#scanStatus{
-  margin-top:12px;
-  color:#666;
-  font-size:15px;
-  line-height:1.5;
-}
+.offer h2{margin:0 0 8px}
+.offer p{margin:6px 0}
 
 .preview{
-  max-width:100%;
-  max-height:280px;
-  border-radius:15px;
-  margin-top:12px;
-  display:none;
+ max-width:100%;max-height:280px;border-radius:15px;
+ margin-top:12px;display:none
 }
-
-.section-title{
-  font-size:20px;
-  font-weight:bold;
-  margin-bottom:12px;
+#scanStatus{margin-top:12px;color:#666;line-height:1.45}
+.empty{
+ color:#888;background:#f1f0f5;border-radius:15px;
+ padding:18px
 }
+.hidden{display:none!important}
 
-.help{
-  color:#777;
-  font-size:14px;
-  line-height:1.5;
-  margin-top:8px;
+.date-grid{
+ display:grid;grid-template-columns:1fr 1fr;gap:12px
 }
-
-.no-expiry{
-  background:#eefaf2;
-  color:#277044;
-  border-radius:15px;
-  padding:15px;
-  margin-top:14px;
-  line-height:1.5;
-}
-
-.expiry-box{
-  background:#f6f3ff;
-  border-radius:15px;
-  padding:15px;
-  margin-top:14px;
-}
-
-.hidden{
-  display:none !important;
+@media(max-width:520px){
+ .date-grid{grid-template-columns:1fr}
 }
 
 nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:78px;
-  background:#fff;
-  border-top:1px solid #ddd;
-  display:flex;
-  z-index:100;
+ position:fixed;bottom:0;left:0;right:0;height:76px;
+ background:white;border-top:1px solid #ddd;
+ display:flex;z-index:50
 }
-
 nav button{
-  flex:1;
-  border:0;
-  background:#fff;
-  color:#777;
-  font-size:13px;
+ flex:1;border:0;background:white;color:#777;font-size:13px
 }
-
-nav button.active{
-  color:#7147e8;
-  font-weight:bold;
-}
-
-.small{
-  font-size:13px;
-}
-
-.file-name{
-  color:#777;
-  margin-top:10px;
-  word-break:break-word;
-}
-
-.stat-card{
-  text-align:center;
-}
-
-.stat-number{
-  font-size:30px;
-  font-weight:bold;
-  color:#7147e8;
-}
-
-textarea{
-  width:100%;
-  min-height:100px;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:13px;
-  font-size:16px;
-}
-
-.back{
-  background:#eee;
-  color:#555;
-}
-
+nav button.active{color:#7147e8;font-weight:bold}
 </style>
 </head>
 
 <body>
 
-
-<!-- =========================================================
-     ACCUEIL
-========================================================= -->
+<!-- ================= ACCUEIL ================= -->
 
 <section class="page active" id="home">
 
 <header>
-  <h1>Bonjour 👋</h1>
-  <div class="subtitle">VTC ASSIST</div>
+<h1>Bonjour 👋</h1>
+<div class="subtitle">VTC ASSIST</div>
 </header>
 
 <div class="container">
 
-  <div class="card vehicle" onclick="go('vehicle')">
+<div class="card vehicle" onclick="go('vehicle')">
+<div class="vehicle-icon">🚘</div>
+<div>
+<div class="vehicle-title" id="vehicleTitle">
+Mon véhicule VTC
+</div>
+<div class="muted" id="vehicleSub">
+Ajoutez votre véhicule
+</div>
+</div>
+</div>
 
-    <div class="vehicle-icon">🚘</div>
+<h2>Mes documents</h2>
 
-    <div>
-      <div class="vehicle-title" id="vehicleTitle">
-        Mon véhicule VTC
-      </div>
+<div id="homeDocs"></div>
 
-      <div class="muted" id="vehicleSub">
-        Ajoutez votre véhicule
-      </div>
-    </div>
+<button class="btn primary" onclick="go('add')">
+＋ Ajouter un document
+</button>
 
-  </div>
+<div class="alert-info">
+✓ Les alertes concernent uniquement les documents possédant
+réellement une date d'expiration.
+</div>
 
-
-  <h2>Mes documents</h2>
-
-  <div id="homeDocs"></div>
-
-
-  <button class="btn primary" onclick="go('add')">
-    ＋ Ajouter un document
-  </button>
-
-
-  <div class="alert-info">
-    ✓ Les alertes sont activées uniquement pour les documents
-    qui possèdent réellement une date d'expiration.
-  </div>
-
-
-  <div class="offer">
-
-    <h2>AVANTAGES VTC</h2>
-
-    <p><b>Économisez chez nos partenaires</b></p>
-
-    <p>Garages · Pneus · Lavage · Assurance</p>
-
-  </div>
+<div class="offer">
+<h2>AVANTAGES VTC</h2>
+<p><b>Économisez chez nos partenaires</b></p>
+<p>Garages · Pneus · Lavage · Assurance</p>
+</div>
 
 </div>
 </section>
 
 
-
-<!-- =========================================================
-     VEHICULE
-========================================================= -->
+<!-- ================= VEHICULE ================= -->
 
 <section class="page" id="vehicle">
 
 <header>
-  <h1>🚘 Mon véhicule</h1>
-  <div class="subtitle">Informations de votre véhicule VTC</div>
+<h1>🚘 Mon véhicule</h1>
+<div class="subtitle">Informations de votre VTC</div>
 </header>
 
 <div class="container">
@@ -425,103 +167,59 @@ textarea{
 <div class="card">
 
 <label>Marque</label>
-
-<input
-  id="make"
-  placeholder="Ex : BYD"
->
-
+<input id="make" placeholder="Ex : BYD">
 
 <label>Modèle</label>
-
-<input
-  id="model"
-  placeholder="Ex : Seal"
->
-
+<input id="model" placeholder="Ex : Seal">
 
 <label>Immatriculation</label>
+<input id="plate" placeholder="Ex : GZ-649-PB">
 
-<input
-  id="plate"
-  placeholder="Ex : GZ-649-PB"
->
-
-
-<label>VIN / Numéro de série</label>
-
-<input
-  id="vin"
-  placeholder="Optionnel"
->
-
-
-<button
-  class="btn primary"
-  onclick="saveVehicle()">
-
-  Enregistrer le véhicule
-
+<button class="btn primary" onclick="saveVehicle()">
+Enregistrer le véhicule
 </button>
 
 </div>
-
 </div>
 </section>
 
 
-
-<!-- =========================================================
-     DOCUMENTS
-========================================================= -->
+<!-- ================= DOCUMENTS ================= -->
 
 <section class="page" id="documents">
 
 <header>
-  <h1>📄 Mes documents</h1>
-  <div class="subtitle">Tous vos documents VTC</div>
+<h1>📄 Mes documents</h1>
+<div class="subtitle">Tous vos documents VTC</div>
 </header>
 
 <div class="container">
 
 <div id="docList"></div>
 
-
-<button
-  class="btn primary"
-  onclick="go('add')">
-
-  ＋ Ajouter un document
-
+<button class="btn primary" onclick="go('add')">
+＋ Ajouter un document
 </button>
 
-
 <div class="alert-info">
-
-✓ Les documents comme la carte grise peuvent avoir
-une date de document sans avoir de date d'expiration.
-
+✓ La carte grise peut avoir une date de document,
+mais elle n'a pas de date d'expiration à surveiller.
 </div>
 
 </div>
 </section>
 
 
-
-<!-- =========================================================
-     AJOUT DOCUMENT
-========================================================= -->
+<!-- ================= AJOUT DOCUMENT ================= -->
 
 <section class="page" id="add">
 
 <header>
-  <h1>＋ Ajouter un document</h1>
-
-  <div class="subtitle">
-    Enregistrez votre document VTC
-  </div>
+<h1>＋ Ajouter un document</h1>
+<div class="subtitle">
+Choisissez le type avant d'ajouter le document.
+</div>
 </header>
-
 
 <div class="container">
 
@@ -530,25 +228,26 @@ une date de document sans avoir de date d'expiration.
 
 <div class="card">
 
-<div class="section-title">
-1. Type de document
-</div>
-
+<h2>1. Type de document</h2>
 
 <label>Catégorie</label>
 
-<select id="docType" onchange="updateDocumentRules()">
+<select id="docType" onchange="changeType()">
 
 <option value="Assurance">
 Assurance
 </option>
 
-<option value="Carte VTC">
-Carte VTC
-</option>
-
 <option value="Macaron VTC">
 Macaron VTC
+</option>
+
+<option value="Attestation REVTC">
+Attestation d'inscription au registre VTC (REVTC)
+</option>
+
+<option value="Carte VTC">
+Carte VTC
 </option>
 
 <option value="Contrôle technique">
@@ -559,171 +258,108 @@ Contrôle technique
 Carte grise
 </option>
 
-<option value="REVTC">
-Attestation d'inscription au registre VTC (REVTC)
-</option>
-
 <option value="Autre">
-Autre document
+Autre
 </option>
 
 </select>
 
-
-<div
-  id="typeHelp"
-  class="help">
-</div>
+<div id="typeHelp" class="help"></div>
 
 </div>
-
 
 
 <!-- FICHIER -->
 
 <div class="card">
 
-<div class="section-title">
-2. Ajouter le document
-</div>
-
+<h2>2. Ajouter le document</h2>
 
 <input
-  id="filePicker"
-  type="file"
-  accept="image/*,.pdf"
+id="filePicker"
+type="file"
+accept="image/*,.pdf"
+style="display:none"
 >
 
-
 <button
-  class="btn secondary"
-  onclick="document.getElementById('filePicker').click()">
-
-  📁 Choisir un fichier
-
+class="btn secondary"
+onclick="document.getElementById('filePicker').click()">
+📁 Choisir un fichier
 </button>
 
 
 <input
-  id="cameraPicker"
-  type="file"
-  accept="image/*"
-  capture="environment"
+id="cameraPicker"
+type="file"
+accept="image/*"
+capture="environment"
+style="display:none"
 >
-
 
 <button
-  class="btn secondary"
-  onclick="document.getElementById('cameraPicker').click()">
-
-  📷 Photographier le document
-
+class="btn secondary"
+onclick="document.getElementById('cameraPicker').click()">
+📷 Photographier le document
 </button>
 
-
-<div class="scan-box">
-
-<img
-  id="preview"
-  class="preview"
->
-
-
-<div id="fileName" class="file-name"></div>
-
+<img id="preview" class="preview">
 
 <div id="scanStatus"></div>
 
 </div>
-
-</div>
-
 
 
 <!-- INFORMATIONS -->
 
 <div class="card">
 
-<div class="section-title">
-3. Informations
-</div>
+<h2>3. Informations</h2>
 
+<label>Nom du document</label>
+<input id="docName" placeholder="Ex : Assurance 2026">
 
-<label>
-Nom du document
-</label>
+<div class="date-grid">
 
-<input
-  id="docName"
-  placeholder="Ex : Assurance 2026"
->
+<div>
 
+<label>Date du document</label>
 
-<label id="dateLabel">
-Date du document
-</label>
+<input id="documentDate" type="date">
 
-<input
-  id="documentDate"
-  type="date"
->
-
-
-<div
-  id="dateHelp"
-  class="help">
-</div>
-
-
-
-<!-- EXPIRATION -->
-
-<div id="expirySection">
-
-<label>
-Date d'expiration
-</label>
-
-<input
-  id="expiry"
-  type="date"
->
-
-
-<div
-  id="expiryHelp"
-  class="help">
+<div class="help">
+Date d'émission, d'inscription ou de première
+immatriculation selon le document.
 </div>
 
 </div>
 
 
-<div
-  id="noExpiryBox"
-  class="no-expiry hidden">
+<div id="expiryArea">
 
-  ✓ Ce type de document n'a pas de date
-  d'expiration à gérer automatiquement.
+<label>Date d'expiration</label>
 
+<input id="expiry" type="date">
+
+<div id="expiryHelp" class="help"></div>
+
+</div>
+
+</div>
+
+
+<div id="noExpiry" class="alert-info hidden">
+✓ Ce document n'a pas de date d'expiration
+à gérer automatiquement.
 </div>
 
 
 <button
-  id="saveDocBtn"
-  class="btn primary"
-  onclick="saveDoc()">
-
-  Enregistrer le document
-
-</button>
-
-
-<button
-  class="btn back"
-  onclick="go('documents')">
-
-  Annuler
-
+id="saveDocBtn"
+class="btn primary"
+onclick="saveDoc()"
+disabled>
+Enregistrer le document
 </button>
 
 </div>
@@ -732,23 +368,14 @@ Date d'expiration
 </section>
 
 
-
-<!-- =========================================================
-     ALERTES
-========================================================= -->
+<!-- ================= ALERTES ================= -->
 
 <section class="page" id="alerts">
 
 <header>
-
-  <h1>🔔 Mes alertes</h1>
-
-  <div class="subtitle">
-    Surveillance des expirations
-  </div>
-
+<h1>🔔 Mes alertes</h1>
+<div class="subtitle">Surveillez les échéances</div>
 </header>
-
 
 <div class="container">
 
@@ -758,1928 +385,1332 @@ Date d'expiration
 </section>
 
 
-
-<!-- =========================================================
-     NAVIGATION
-========================================================= -->
+<!-- ================= NAVIGATION ================= -->
 
 <nav>
 
-<button
-  onclick="go('home')"
-  id="navHome">
-
-  🏠<br>
-  <small>Accueil</small>
-
+<button onclick="go('home')" id="navHome">
+🏠<br><small>Accueil</small>
 </button>
 
-
-<button
-  onclick="go('documents')"
-  id="navDocs">
-
-  📄<br>
-  <small>Documents</small>
-
+<button onclick="go('documents')" id="navDocs">
+📄<br><small>Documents</small>
 </button>
 
-
-<button
-  onclick="go('alerts')"
-  id="navAlerts">
-
-  🔔<br>
-  <small>Alertes</small>
-
+<button onclick="go('alerts')" id="navAlerts">
+🔔<br><small>Alertes</small>
 </button>
 
-
-<button
-  onclick="go('vehicle')"
-  id="navVehicle">
-
-  🚘<br>
-  <small>Véhicule</small>
-
+<button onclick="go('vehicle')" id="navVehicle">
+🚘<br><small>Véhicule</small>
 </button>
 
 </nav>
 
 
-
-<!-- OCR -->
-
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-
 
 <script>
 
 /* =========================================================
-   DONNÉES
-========================================================= */
+   VTC ASSIST
+   VERSION COMPLETE
+   GESTION CORRECTE DES DATES
+   ========================================================= */
 
-const KEY = "vtc-assist-v6";
 
+const KEY="vtc-assist-v6";
 
-const DEFAULT_STATE = {
-  vehicle:null,
-  docs:[]
+let state={
+ vehicle:null,
+ docs:[]
 };
 
-
-let state;
-
-try{
-
-  state = JSON.parse(
-    localStorage.getItem(KEY)
-  );
-
-}catch(error){
-
-  state = null;
-
-}
-
-
-if(
-  !state ||
-  typeof state !== "object"
-){
-
-  state = DEFAULT_STATE;
-
-}
-
-
-if(!Array.isArray(state.docs)){
-  state.docs=[];
-}
-
-
-function saveState(){
-
-  localStorage.setItem(
-    KEY,
-    JSON.stringify(state)
-  );
-
-}
-
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function go(id){
-
-  document
-    .querySelectorAll(".page")
-    .forEach(function(page){
-
-      page.classList.remove("active");
-
-    });
-
-
-  const page =
-    document.getElementById(id);
-
-
-  if(page){
-
-    page.classList.add("active");
-
-  }
-
-
-  document
-    .querySelectorAll("nav button")
-    .forEach(function(btn){
-
-      btn.classList.remove("active");
-
-    });
-
-
-  if(id==="home")
-    document.getElementById("navHome")
-      .classList.add("active");
-
-
-  if(id==="documents" || id==="add")
-    document.getElementById("navDocs")
-      .classList.add("active");
-
-
-  if(id==="alerts")
-    document.getElementById("navAlerts")
-      .classList.add("active");
-
-
-  if(id==="vehicle")
-    document.getElementById("navVehicle")
-      .classList.add("active");
-
-
-  render();
-
-  window.scrollTo(0,0);
-
-}
-
-
-
-/* =========================================================
-   VEHICULE
-========================================================= */
-
-function saveVehicle(){
-
-  const make =
-    document.getElementById("make")
-      .value.trim();
-
-
-  const model =
-    document.getElementById("model")
-      .value.trim();
-
-
-  const plate =
-    document.getElementById("plate")
-      .value.trim();
-
-
-  const vin =
-    document.getElementById("vin")
-      .value.trim();
-
-
-  if(
-    !make &&
-    !model &&
-    !plate
-  ){
-
-    alert(
-      "Veuillez renseigner au moins la marque, le modèle ou l'immatriculation."
-    );
-
-    return;
-
-  }
-
-
-  state.vehicle={
-    make:make,
-    model:model,
-    plate:plate,
-    vin:vin
-  };
-
-
-  saveState();
-
-  render();
-
-  alert(
-    "Véhicule enregistré."
-  );
-
-  go("home");
-
-}
-
+let currentFile=null;
+let currentFileData=null;
 
 
 /* =========================================================
    REGLES DES DOCUMENTS
-========================================================= */
+   ========================================================= */
 
-function hasExpiry(type){
+const RULES={
 
-  return [
-    "Assurance",
-    "Carte VTC",
-    "Macaron VTC",
-    "Contrôle technique",
-    "REVTC"
-  ].includes(type);
+"Carte grise":{
+ expiry:false,
+ help:
+ "La carte grise possède une date d'immatriculation ou d'émission, mais cette date n'est PAS une date d'expiration.",
+ expiryHelp:
+ "Aucune expiration."
+},
+
+"Attestation REVTC":{
+ expiry:true,
+ help:
+ "L'attestation REVTC possède une durée de validité. La fin de validité est recherchée notamment après « jusqu'au ».",
+ expiryHelp:
+ "Fin de validité de l'inscription REVTC."
+},
+
+"Macaron VTC":{
+ expiry:true,
+ help:
+ "La date d'expiration doit correspondre à la validité du macaron.",
+ expiryHelp:
+ "Date d'expiration du macaron."
+},
+
+"Assurance":{
+ expiry:true,
+ help:
+ "L'application recherche l'échéance ou l'expiration de l'assurance.",
+ expiryHelp:
+ "Échéance de l'assurance."
+},
+
+"Carte VTC":{
+ expiry:true,
+ help:
+ "La date d'émission et la date d'expiration sont différentes.",
+ expiryHelp:
+ "Date d'expiration de la carte."
+},
+
+"Contrôle technique":{
+ expiry:true,
+ help:
+ "La date du contrôle n'est pas la date d'échéance. L'application recherche la prochaine échéance.",
+ expiryHelp:
+ "Prochaine échéance."
+},
+
+"Autre":{
+ expiry:true,
+ help:
+ "Vérifiez manuellement la date d'expiration.",
+ expiryHelp:
+ "Date d'expiration."
+}
+
+};
+
+
+/* =========================================================
+   CHARGEMENT
+   ========================================================= */
+
+function load(){
+
+ try{
+
+  let x=localStorage.getItem(KEY);
+
+  if(x){
+
+   let s=JSON.parse(x);
+
+   state.vehicle=s.vehicle||null;
+   state.docs=Array.isArray(s.docs)?s.docs:[];
+
+   return;
+  }
+
+  /* récupération ancienne version */
+
+  for(let k of [
+   "vtc-assist-v5",
+   "vtc-assist-v4",
+   "vtc-assist-v3"
+  ]){
+
+   let old=localStorage.getItem(k);
+
+   if(old){
+
+    let s=JSON.parse(old);
+
+    state.vehicle=s.vehicle||null;
+    state.docs=Array.isArray(s.docs)?s.docs:[];
+
+    save();
+
+    return;
+   }
+  }
+
+ }catch(e){
+
+  console.log(e);
+
+ }
+
+}
+
+function save(){
+
+ localStorage.setItem(
+  KEY,
+  JSON.stringify(state)
+ );
 
 }
 
 
-function updateDocumentRules(){
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
-  const type =
-    document.getElementById("docType")
-      .value;
+function go(id){
 
+ document
+ .querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("active"));
 
-  const typeHelp =
-    document.getElementById("typeHelp");
+ let page=document.getElementById(id);
 
+ if(page)
+  page.classList.add("active");
 
-  const dateLabel =
-    document.getElementById("dateLabel");
 
+ document
+ .querySelectorAll("nav button")
+ .forEach(b=>b.classList.remove("active"));
 
-  const dateHelp =
-    document.getElementById("dateHelp");
 
+ let map={
+  home:"navHome",
+  documents:"navDocs",
+  alerts:"navAlerts",
+  vehicle:"navVehicle"
+ };
 
-  const expirySection =
-    document.getElementById("expirySection");
+ if(map[id])
+  document.getElementById(map[id]).classList.add("active");
 
 
-  const noExpiryBox =
-    document.getElementById("noExpiryBox");
+ if(id==="add")
+  changeType();
 
+ render();
 
-  const expiryHelp =
-    document.getElementById("expiryHelp");
-
-
-  expirySection.classList.remove(
-    "hidden"
-  );
-
-
-  noExpiryBox.classList.add(
-    "hidden"
-  );
-
-
-  if(type==="Carte grise"){
-
-    typeHelp.textContent =
-      "La carte grise possède une date de première immatriculation. Cette date n'est PAS une date d'expiration.";
-
-
-    dateLabel.textContent =
-      "Date du document / première immatriculation";
-
-
-    dateHelp.textContent =
-      "Cette date est conservée comme information du véhicule. Elle ne déclenche aucune alerte.";
-
-
-    expirySection.classList.add(
-      "hidden"
-    );
-
-
-    noExpiryBox.classList.remove(
-      "hidden"
-    );
-
-  }
-
-
-  else if(type==="REVTC"){
-
-    typeHelp.textContent =
-      "L'attestation REVTC possède une date d'inscription et une durée de validité. La date d'inscription ne doit pas être confondue avec la date d'expiration.";
-
-
-    dateLabel.textContent =
-      "Date d'inscription / date de l'attestation";
-
-
-    dateHelp.textContent =
-      "Pour une attestation indiquant une validité de cinq ans, la date d'expiration doit correspondre à la date « jusqu'au … » indiquée sur l'attestation.";
-
-
-    expiryHelp.textContent =
-      "Exemple : une attestation du 07/05/2024 valable cinq ans expire le 07/05/2029.";
-
-  }
-
-
-  else if(type==="Assurance"){
-
-    typeHelp.textContent =
-      "L'application doit utiliser la date d'échéance ou de fin de garantie, et non simplement le premier jour trouvé dans le document.";
-
-
-    dateLabel.textContent =
-      "Date du document";
-
-
-    dateHelp.textContent =
-      "Date d'émission ou date du document, si elle est connue.";
-
-
-    expiryHelp.textContent =
-      "Indiquez la date d'échéance / fin de garantie.";
-
-  }
-
-
-  else if(type==="Contrôle technique"){
-
-    typeHelp.textContent =
-      "Le contrôle technique est suivi selon sa date de validité / prochaine échéance.";
-
-
-    dateLabel.textContent =
-      "Date du contrôle";
-
-
-    dateHelp.textContent =
-      "Date à laquelle le contrôle technique a été effectué.";
-
-
-    expiryHelp.textContent =
-      "Indiquez la date limite de validité indiquée par le document.";
-
-  }
-
-
-  else if(type==="Macaron VTC"){
-
-    typeHelp.textContent =
-      "Le macaron VTC est suivi selon la date d'expiration réellement indiquée.";
-
-
-    dateLabel.textContent =
-      "Date du document";
-
-
-    dateHelp.textContent =
-      "Date d'émission si elle est indiquée.";
-
-
-    expiryHelp.textContent =
-      "Indiquez la date d'expiration du macaron.";
-
-  }
-
-
-  else if(type==="Carte VTC"){
-
-    typeHelp.textContent =
-      "La carte professionnelle VTC est suivie selon sa date de validité.";
-
-
-    dateLabel.textContent =
-      "Date du document";
-
-
-    dateHelp.textContent =
-      "Date d'émission si elle est indiquée.";
-
-
-    expiryHelp.textContent =
-      "Indiquez la date d'expiration de la carte.";
-
-  }
-
-
-  else{
-
-    typeHelp.textContent =
-      "Document personnalisé. Vous pouvez renseigner sa date et, si nécessaire, sa date d'expiration.";
-
-
-    dateLabel.textContent =
-      "Date du document";
-
-
-    dateHelp.textContent =
-      "";
-
-
-    expiryHelp.textContent =
-      "Laissez vide si le document n'a pas de date d'expiration.";
-
-  }
-
+ window.scrollTo(0,0);
 }
 
+
+/* =========================================================
+   VEHICULE
+   ========================================================= */
+
+function saveVehicle(){
+
+ let make=document.getElementById("make").value.trim();
+ let model=document.getElementById("model").value.trim();
+ let plate=document.getElementById("plate").value.trim();
+
+ if(!make&&!model&&!plate){
+
+  alert("Veuillez remplir les informations du véhicule.");
+
+  return;
+ }
+
+ state.vehicle={
+  make:make,
+  model:model,
+  plate:plate
+ };
+
+ save();
+
+ alert("Véhicule enregistré.");
+
+ go("home");
+}
 
 
 /* =========================================================
    DATES
-========================================================= */
+   ========================================================= */
 
-function daysUntil(date){
+function validDate(x){
 
-  if(!date)
-    return null;
+ if(!x)return null;
 
+ let d=new Date(x+"T00:00:00");
 
-  const today =
-    new Date();
-
-
-  today.setHours(
-    0,0,0,0
-  );
-
-
-  const d =
-    new Date(
-      date+"T00:00:00"
-    );
-
-
-  if(isNaN(d.getTime()))
-    return null;
-
-
-  return Math.ceil(
-    (d-today)/86400000
-  );
-
+ return isNaN(d.getTime())?null:d;
 }
 
 
-function statusClass(days){
+function daysUntil(x){
 
-  if(days===null)
-    return "neutral";
+ let d=validDate(x);
 
+ if(!d)return null;
 
-  if(days<0)
-    return "bad";
+ let today=new Date();
 
+ today.setHours(0,0,0,0);
 
-  if(days<=30)
-    return "warning";
-
-
-  return "good";
-
+ return Math.ceil(
+  (d-today)/86400000
+ );
 }
 
 
-function statusText(days){
+function formatDate(x){
 
-  if(days===null)
-    return "Aucune expiration";
+ let d=validDate(x);
 
+ if(!d)return "-";
 
-  if(days<0)
-    return "Expiré";
-
-
-  if(days===0)
-    return "Expire aujourd'hui";
-
-
-  if(days===1)
-    return "Expire demain";
-
-
-  return "Expire dans "+days+" jours";
-
+ return d.toLocaleDateString("fr-FR");
 }
 
 
-function formatDate(date){
+function statusClass(n){
 
-  if(!date)
-    return "-";
+ if(n===null)return "neutral";
 
+ if(n<0)return "bad";
 
-  const d =
-    new Date(
-      date+"T00:00:00"
-    );
+ if(n<=30)return "warning";
 
-
-  if(isNaN(d.getTime()))
-    return "-";
-
-
-  return d.toLocaleDateString(
-    "fr-FR"
-  );
-
+ return "good";
 }
 
+
+function statusText(n){
+
+ if(n===null)
+  return "Aucun suivi d'expiration";
+
+ if(n<0)
+  return "Expiré depuis "+Math.abs(n)+" jours";
+
+ if(n===0)
+  return "Expire aujourd'hui";
+
+ if(n===1)
+  return "Expire demain";
+
+ return "Expire dans "+n+" jours";
+}
 
 
 /* =========================================================
-   SECURITE HTML
-========================================================= */
+   SECURITE
+   ========================================================= */
 
-function escapeHtml(text){
+function esc(x){
 
-  return String(text || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
+ return String(x||"")
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
 }
 
+
+/* =========================================================
+   AFFICHAGE
+   ========================================================= */
+
+function render(){
+
+ if(state.vehicle){
+
+  document.getElementById("vehicleTitle")
+  .textContent=
+  (
+   state.vehicle.make+" "+
+   state.vehicle.model
+  ).trim()||"Mon véhicule VTC";
+
+
+  document.getElementById("vehicleSub")
+  .textContent=
+  state.vehicle.plate||
+  "Véhicule enregistré";
+
+
+  if(document.getElementById("make"))
+   document.getElementById("make").value=
+   state.vehicle.make||"";
+
+  if(document.getElementById("model"))
+   document.getElementById("model").value=
+   state.vehicle.model||"";
+
+  if(document.getElementById("plate"))
+   document.getElementById("plate").value=
+   state.vehicle.plate||"";
+
+ }else{
+
+  document.getElementById("vehicleTitle")
+  .textContent="Mon véhicule VTC";
+
+  document.getElementById("vehicleSub")
+  .textContent="Ajoutez votre véhicule";
+
+ }
+
+
+ let docs=[...state.docs];
+
+ docs.sort((a,b)=>{
+
+  let da=daysUntil(a.expiry);
+  let db=daysUntil(b.expiry);
+
+  if(da===null&&db===null)return 0;
+  if(da===null)return 1;
+  if(db===null)return -1;
+
+  return da-db;
+
+ });
+
+
+ document.getElementById("homeDocs")
+ .innerHTML=
+ docs.length
+ ?
+ docs.slice(0,3).map(card).join("")
+ :
+ '<div class="empty">Aucun document enregistré.</div>';
+
+
+ document.getElementById("docList")
+ .innerHTML=
+ docs.length
+ ?
+ docs.map(card).join("")
+ :
+ '<div class="empty">Aucun document enregistré.</div>';
+
+
+ let alerts=docs.filter(d=>{
+
+  let n=daysUntil(d.expiry);
+
+  return n!==null&&n<=30;
+
+ });
+
+
+ document.getElementById("alertsList")
+ .innerHTML=
+ alerts.length
+ ?
+ alerts.map(card).join("")
+ :
+ '<div class="alert-info">✓ Aucune alerte d'expiration actuellement.</div>';
+
+}
 
 
 /* =========================================================
    CARTE DOCUMENT
-========================================================= */
+   ========================================================= */
 
 function card(doc){
 
-  const days =
-    hasExpiry(doc.type)
-      ? daysUntil(doc.expiry)
-      : null;
+ let n=daysUntil(doc.expiry);
+
+ let html=`
+ <div class="doc ${statusClass(n)}">
+
+ <span class="pill">
+ ${esc(doc.type)}
+ </span>
+
+ <div class="doc-title">
+ 📄 ${esc(doc.name||doc.type)}
+ </div>
+ `;
 
 
-  const cls =
-    hasExpiry(doc.type)
-      ? statusClass(days)
-      : "neutral";
+ if(doc.documentDate){
 
-
-  let datesHTML="";
-
-
-  if(doc.documentDate){
-
-    datesHTML +=
-      `<div class="doc-row">
-        📅 Date du document :
-        <b>${formatDate(doc.documentDate)}</b>
-      </div>`;
-
-  }
-
-
-  if(
-    doc.type==="Carte grise"
-  ){
-
-    datesHTML +=
-      `<div class="doc-row">
-        ✓ Aucun suivi d'expiration
-      </div>`;
-
-  }
-
-
-  else if(
-    hasExpiry(doc.type)
-  ){
-
-    datesHTML +=
-      `<div class="doc-row">
-        ⏳ Date d'expiration :
-        <b>${formatDate(doc.expiry)}</b>
-      </div>
-
-      <div class="doc-row">
-        <b>${statusText(days)}</b>
-      </div>`;
-
-  }
-
-
-  else{
-
-    datesHTML +=
-      `<div class="doc-row">
-        ✓ Aucun suivi d'expiration
-      </div>`;
-
-  }
-
-
-  let fileHTML="";
-
-
-  if(doc.fileName){
-
-    fileHTML =
-      `<div class="file-name">
-        📎 ${escapeHtml(doc.fileName)}
-      </div>`;
-
-  }
-
-
-  let viewButton="";
-
-
-  if(doc.fileData){
-
-    viewButton =
-      `<button
-        class="btn secondary"
-        onclick="viewFile(${doc.id})">
-        Voir
-      </button>`;
-
-  }
-
-
-  return `
-
-    <div class="doc ${cls}">
-
-      <span class="pill">
-        ${escapeHtml(doc.type)}
-      </span>
-
-      <div class="doc-title">
-        📄 ${escapeHtml(
-          doc.name || doc.type
-        )}
-      </div>
-
-      ${datesHTML}
-
-      ${fileHTML}
-
-      <div class="doc-buttons">
-
-        ${viewButton}
-
-        <button
-          class="btn danger"
-          onclick="deleteDoc(${doc.id})">
-
-          Supprimer
-
-        </button>
-
-      </div>
-
-    </div>
-
+  html+=`
+  <p>
+  📅 Date du document :
+  <b>${formatDate(doc.documentDate)}</b>
+  </p>
   `;
 
-}
+ }
 
+
+ if(doc.expiry){
+
+  html+=`
+  <p>
+  ⏳ Date d'expiration :
+  <b>${formatDate(doc.expiry)}</b>
+  </p>
+
+  <p><b>${statusText(n)}</b></p>
+  `;
+
+ }else{
+
+  html+=`
+  <p>
+  ✓ Aucun suivi d'expiration
+  </p>
+  `;
+
+ }
+
+
+ if(doc.fileName){
+
+  html+=`
+  <div class="help">
+  📎 ${esc(doc.fileName)}
+  </div>
+  `;
+
+ }
+
+
+ html+=`<div class="actions">`;
+
+
+ if(doc.fileData){
+
+  html+=`
+  <button class="btn secondary"
+  onclick="viewDoc(${doc.id})">
+  Voir
+  </button>
+  `;
+
+ }
+
+
+ html+=`
+ <button class="btn danger"
+ onclick="deleteDoc(${doc.id})">
+ Supprimer
+ </button>
+ </div>
+ </div>
+ `;
+
+ return html;
+}
 
 
 /* =========================================================
-   RENDU
-========================================================= */
+   TYPE DOCUMENT
+   ========================================================= */
 
-function render(){
+function changeType(){
 
-  const title =
-    document.getElementById(
-      "vehicleTitle"
-    );
+ let type=
+ document.getElementById("docType").value;
 
-
-  const sub =
-    document.getElementById(
-      "vehicleSub"
-    );
+ let rule=RULES[type];
 
 
-  if(state.vehicle){
-
-    const vehicleName =
-      (
-        (state.vehicle.make || "")+
-        " "+
-        (state.vehicle.model || "")
-      ).trim();
+ document.getElementById("typeHelp")
+ .textContent=rule.help;
 
 
-    title.textContent =
-      vehicleName ||
-      "Mon véhicule VTC";
+ document.getElementById("expiryHelp")
+ .textContent=rule.expiryHelp;
 
 
-    sub.textContent =
-      state.vehicle.plate ||
-      "Véhicule enregistré";
+ if(rule.expiry){
+
+  document
+  .getElementById("expiryArea")
+  .classList.remove("hidden");
+
+  document
+  .getElementById("noExpiry")
+  .classList.add("hidden");
+
+ }else{
+
+  document
+  .getElementById("expiryArea")
+  .classList.add("hidden");
+
+  document
+  .getElementById("noExpiry")
+  .classList.remove("hidden");
+
+  document.getElementById("expiry").value="";
+
+ }
 
 
-    if(
-      document.getElementById("make")
-    ){
-
-      document.getElementById("make")
-        .value =
-          state.vehicle.make || "";
-
-      document.getElementById("model")
-        .value =
-          state.vehicle.model || "";
-
-      document.getElementById("plate")
-        .value =
-          state.vehicle.plate || "";
-
-      document.getElementById("vin")
-        .value =
-          state.vehicle.vin || "";
-
-    }
-
-  }
-
-
-  else{
-
-    title.textContent =
-      "Mon véhicule VTC";
-
-    sub.textContent =
-      "Ajoutez votre véhicule";
-
-  }
-
-
-  const docs =
-    [...state.docs]
-      .sort(function(a,b){
-
-        const da =
-          hasExpiry(a.type)
-            ? daysUntil(a.expiry)
-            : 999999;
-
-
-        const db =
-          hasExpiry(b.type)
-            ? daysUntil(b.expiry)
-            : 999999;
-
-
-        return da-db;
-
-      });
-
-
-  const homeDocs =
-    document.getElementById(
-      "homeDocs"
-    );
-
-
-  const docList =
-    document.getElementById(
-      "docList"
-    );
-
-
-  if(homeDocs){
-
-    homeDocs.innerHTML =
-      docs.length
-        ? docs
-            .slice(0,3)
-            .map(card)
-            .join("")
-        : `<div class="empty">
-             Aucun document enregistré.
-           </div>`;
-
-  }
-
-
-  if(docList){
-
-    docList.innerHTML =
-      docs.length
-        ? docs.map(card).join("")
-        : `<div class="empty">
-             Aucun document enregistré.
-           </div>`;
-
-  }
-
-
-  const alertsList =
-    document.getElementById(
-      "alertsList"
-    );
-
-
-  if(alertsList){
-
-    const alerts =
-      docs.filter(function(doc){
-
-        if(!hasExpiry(doc.type))
-          return false;
-
-        const days =
-          daysUntil(doc.expiry);
-
-        return days !== null &&
-               days <= 30;
-
-      });
-
-
-    alertsList.innerHTML =
-      alerts.length
-        ? alerts.map(card).join("")
-        : `<div class="alert-info">
-             ✓ Aucune alerte actuellement.
-           </div>`;
-
-  }
-
+ updateButton();
 }
-
-
-
-/* =========================================================
-   SUPPRIMER DOCUMENT
-========================================================= */
-
-function deleteDoc(id){
-
-  if(
-    !confirm(
-      "Supprimer ce document ?"
-    )
-  )
-    return;
-
-
-  state.docs =
-    state.docs.filter(function(doc){
-
-      return doc.id !== id;
-
-    });
-
-
-  saveState();
-
-  render();
-
-}
-
-
-
-/* =========================================================
-   VOIR FICHIER
-========================================================= */
-
-function viewFile(id){
-
-  const doc =
-    state.docs.find(function(d){
-
-      return d.id===id;
-
-    });
-
-
-  if(
-    !doc ||
-    !doc.fileData
-  ){
-
-    alert(
-      "Le fichier n'est pas disponible."
-    );
-
-    return;
-
-  }
-
-
-  const win =
-    window.open();
-
-
-  if(!win){
-
-    alert(
-      "Veuillez autoriser l'ouverture des fenêtres dans votre navigateur."
-    );
-
-    return;
-
-  }
-
-
-  if(
-    doc.fileType === "application/pdf"
-  ){
-
-    win.document.write(
-      `<iframe
-        src="${doc.fileData}"
-        style="width:100%;height:100vh;border:0">
-      </iframe>`
-    );
-
-  }
-
-  else{
-
-    win.document.write(
-      `<img
-        src="${doc.fileData}"
-        style="max-width:100%;height:auto">`
-    );
-
-  }
-
-}
-
 
 
 /* =========================================================
    EXTRACTION DES DATES
-========================================================= */
-
-function extractDates(text){
-
-  const dates=[];
-
-
-  if(!text)
-    return dates;
-
-
-  const patterns=[
-
-    /\b(0?[1-9]|[12]\d|3[01])[\/\-\.](0?[1-9]|1[0-2])[\/\-\.](20\d{2})\b/g,
-
-    /\b(20\d{2})[\/\-\.](0?[1-9]|1[0-2])[\/\-\.](0?[1-9]|[12]\d|3[01])\b/g
-
-  ];
-
-
-  patterns.forEach(function(re){
-
-    let m;
-
-
-    while(
-      (m=re.exec(text)) !== null
-    ){
-
-      let y,mo,d;
-
-
-      if(
-        String(m[1]).length===4
-      ){
-
-        y=m[1];
-
-        mo=String(m[2])
-          .padStart(2,"0");
-
-        d=String(m[3])
-          .padStart(2,"0");
-
-      }
-
-      else{
-
-        d=String(m[1])
-          .padStart(2,"0");
-
-        mo=String(m[2])
-          .padStart(2,"0");
-
-        y=m[3];
-
-      }
-
-
-      const iso =
-        `${y}-${mo}-${d}`;
-
-
-      const dt =
-        new Date(
-          iso+"T00:00:00"
-        );
-
-
-      if(
-        !isNaN(dt.getTime())
-      ){
-
-        dates.push(iso);
-
-      }
-
-    }
-
-  });
-
-
-  return [
-    ...new Set(dates)
-  ];
-
-}
-
-
-
-/* =========================================================
-   DATE REVTC
-========================================================= */
-
-function findREVTCExpiry(text){
-
-  if(!text)
-    return null;
-
-
-  const normalized =
-    text
-      .replace(/\s+/g," ")
-      .toLowerCase();
-
-
-  /*
-    CAS PRIORITAIRE :
-
-    "jusqu'au 07 mai 2029"
-    "jusqu'au 07/05/2029"
-    "jusqu au 07 mai 2029"
-  */
-
-
-  const numericUntil =
-    normalized.match(
-      /jusqu['’]?\s*au\s+(\d{1,2})[\/\-\.](\d{1,2})[\/\-\.](20\d{2})/
-    );
-
-
-  if(numericUntil){
-
-    return makeISO(
-      numericUntil[3],
-      numericUntil[2],
-      numericUntil[1]
-    );
-
-  }
-
-
-  const frenchMonths = {
-    janvier:"01",
-    février:"02",
-    fevrier:"02",
-    mars:"03",
-    avril:"04",
-    mai:"05",
-    juin:"06",
-    juillet:"07",
-    août:"08",
-    aout:"08",
-    septembre:"09",
-    octobre:"10",
-    novembre:"11",
-    décembre:"12",
-    decembre:"12"
-  };
-
-
-  const monthNames =
-    Object.keys(
-      frenchMonths
-    ).join("|");
-
-
-  const frenchUntil =
-    normalized.match(
-      new RegExp(
-        "jusqu['’]?\\\\s*au\\\\s+(\\\\d{1,2})\\\\s+("+
-        monthNames+
-        ")\\\\s+(20\\\\d{2})"
-      )
-    );
-
-
-  if(frenchUntil){
-
-    return makeISO(
-      frenchUntil[3],
-      frenchMonths[
-        frenchUntil[2]
-      ],
-      frenchUntil[1]
-    );
-
-  }
-
-
-  /*
-    إذا وجدنا عبارة خمس سنوات
-    مع تاريخ بداية واضح،
-    نحسب تاريخ النهاية.
-  */
-
-
-  const fiveYears =
-    /(?:durée|valable|validité)[^.]{0,80}cinq\s+ans/
-      .test(normalized);
-
-
-  if(fiveYears){
-
-    const dates =
-      extractDates(text);
-
-
-    if(dates.length){
-
-      /*
-        نأخذ تاريخ البداية
-        ثم نضيف خمس سنوات.
-      */
-
-      const sorted =
-        dates.slice().sort();
-
-
-      const start =
-        new Date(
-          sorted[0]+"T00:00:00"
-        );
-
-
-      if(!isNaN(start.getTime())){
-
-        start.setFullYear(
-          start.getFullYear()+5
-        );
-
-
-        return localISO(start);
-
-      }
-
-    }
-
-  }
-
-
-  return null;
-
-}
-
-
-
-/* =========================================================
-   ASSURANCE
-========================================================= */
-
-function findInsuranceExpiry(text){
-
-  if(!text)
-    return null;
-
-
-  const normalized =
-    text
-      .replace(/\s+/g," ")
-      .toLowerCase();
-
-
-  /*
-    نحاول أولاً العثور على
-    échéance / expiration / fin de garantie.
-  */
-
-
-  const labels=[
-    "échéance",
-    "echeance",
-    "expiration",
-    "expire",
-    "fin de garantie",
-    "date de fin"
-  ];
-
-
-  const dates =
-    extractDates(text);
-
-
-  if(!dates.length)
-    return null;
-
-
-  for(
-    const label of labels
-  ){
-
-    const index =
-      normalized.indexOf(label);
-
-
-    if(index<0)
-      continue;
-
-
-    const zone =
-      normalized.substring(
-        index,
-        index+120
-      );
-
-
-    const zoneDates =
-      extractDates(zone);
-
-
-    if(zoneDates.length){
-
-      return zoneDates
-        .sort()
-        .pop();
-
-    }
-
-  }
-
-
-  /*
-    لا نخمن تاريخ انتهاء التأمين
-    من أول تاريخ في الوثيقة.
-  */
-
-  return null;
-
-}
-
-
-
-/* =========================================================
-   معالجة الصورة
-========================================================= */
-
-async function scanDocument(file){
-
-  if(!file)
-    return;
-
-
-  const status =
-    document.getElementById(
-      "scanStatus"
-    );
-
-
-  const preview =
-    document.getElementById(
-      "preview"
-    );
-
-
-  const type =
-    document.getElementById(
-      "docType"
-    ).value;
-
-
-  status.textContent =
-    "Lecture du document en cours…";
-
-
-  if(
-    file.type.startsWith("image/")
-  ){
-
-    preview.src =
-      URL.createObjectURL(file);
-
-    preview.style.display =
-      "block";
-
-
-    try{
-
-      const result =
-        await Tesseract.recognize(
-          file,
-          "fra+eng",
-          {
-            logger:function(m){
-
-              if(
-                m.status ===
-                "recognizing text"
-              ){
-
-                status.textContent =
-                  "Lecture : "+
-                  Math.round(
-                    (m.progress||0)*100
-                  )+
-                  "%";
-
-              }
-
-            }
-
-          }
-        );
-
-
-      const text =
-        result.data.text || "";
-
-
-      console.log(
-        "OCR:",
-        text
-      );
-
-
-      /*
-        REVTC
-      */
-
-      if(type==="REVTC"){
-
-        const dates =
-          extractDates(text);
-
-
-        if(dates.length){
-
-          /*
-            تاريخ الإصدار/التسجيل:
-            نضع أول تاريخ في حقل
-            تاريخ الوثيقة.
-
-            تاريخ الانتهاء:
-            نبحث UNIQUEMENT عن
-            "jusqu'au".
-          */
-
-
-          document.getElementById(
-            "documentDate"
-          ).value =
-            dates[0];
-
-
-          const expiry =
-            findREVTCExpiry(text);
-
-
-          if(expiry){
-
-            document.getElementById(
-              "expiry"
-            ).value =
-              expiry;
-
-
-            status.textContent =
-              "✓ REVTC : date d'expiration détectée : "+
-              formatDate(expiry);
-
-          }
-
-          else{
-
-            status.textContent =
-              "✓ Date d'inscription détectée. La date « jusqu'au » n'a pas été détectée : vérifiez l'expiration manuellement.";
-
-          }
-
-        }
-
-        else{
-
-          status.textContent =
-            "Document lu, mais aucune date détectée.";
-
-        }
-
-      }
-
-
-      /*
-        CARTE GRISE
-      */
-
-      else if(
-        type==="Carte grise"
-      ){
-
-        const dates =
-          extractDates(text);
-
-
-        if(dates.length){
-
-          /*
-            IMPORTANT :
-            cette date est seulement
-            la date du document /
-            première immatriculation.
-          */
-
-
-          document.getElementById(
-            "documentDate"
-          ).value =
-            dates[0];
-
-
-          status.textContent =
-            "✓ Date du document détectée : "+
-            formatDate(dates[0])+
-            ". Aucun calcul d'expiration.";
-
-        }
-
-        else{
-
-          status.textContent =
-            "Document lu. Saisissez la date du document manuellement.";
-
-        }
-
-      }
-
-
-      /*
-        ASSURANCE
-      */
-
-      else if(
-        type==="Assurance"
-      ){
-
-        const expiry =
-          findInsuranceExpiry(text);
-
-
-        if(expiry){
-
-          document.getElementById(
-            "expiry"
-          ).value =
-            expiry;
-
-
-          status.textContent =
-            "✓ Échéance détectée : "+
-            formatDate(expiry);
-
-        }
-
-        else{
-
-          status.textContent =
-            "Document lu. L'échéance n'a pas été identifiée avec certitude. Vérifiez-la manuellement.";
-
-        }
-
-      }
-
-
-      /*
-        AUTRES DOCUMENTS
-      */
-
-      else{
-
-        const dates =
-          extractDates(text);
-
-
-        if(dates.length){
-
-          document.getElementById(
-            "documentDate"
-          ).value =
-            dates[0];
-
-
-          status.textContent =
-            "✓ Date détectée : "+
-            formatDate(dates[0])+
-            ". Vérifiez la date d'expiration.";
-
-        }
-
-        else{
-
-          status.textContent =
-            "Document lu, mais aucune date détectée.";
-
-        }
-
-      }
-
-    }
-
-
-    catch(error){
-
-      console.error(error);
-
-
-      status.textContent =
-        "Impossible de lire automatiquement le document. Vérifiez les dates manuellement.";
-
-    }
-
-  }
-
-
-  else if(
-    file.type === "application/pdf"
-  ){
-
-    status.textContent =
-      "✓ PDF sélectionné. Vérifiez les dates manuellement.";
-
-  }
-
-
-  else{
-
-    status.textContent =
-      "Format de fichier non pris en charge.";
-
-  }
-
-}
-
-
-
-/* =========================================================
-   CONVERSION DATE
-========================================================= */
+   ========================================================= */
 
 function makeISO(y,m,d){
 
-  return String(y)+"-"+
-    String(m).padStart(2,"0")+"-"+
-    String(d).padStart(2,"0");
+ y=String(y);
+ m=String(m).padStart(2,"0");
+ d=String(d).padStart(2,"0");
 
+ let iso=y+"-"+m+"-"+d;
+
+ let x=validDate(iso);
+
+ if(!x)return null;
+
+ if(
+  x.getFullYear()!=Number(y)||
+  x.getMonth()+1!=Number(m)||
+  x.getDate()!=Number(d)
+ )
+ return null;
+
+ return iso;
 }
 
 
-function localISO(date){
+function allDates(text){
 
-  return date.getFullYear()+"-"+
-    String(
-      date.getMonth()+1
-    ).padStart(2,"0")+"-"+
-    String(
-      date.getDate()
-    ).padStart(2,"0");
+ let result=[];
 
+ let patterns=[
+
+ /\b(0?[1-9]|[12]\d|3[01])[\/\-.](0?[1-9]|1[0-2])[\/\-.](20\d{2})\b/g,
+
+ /\b(20\d{2})[\/\-.](0?[1-9]|1[0-2])[\/\-.](0?[1-9]|[12]\d|3[01])\b/g
+
+ ];
+
+
+ for(let re of patterns){
+
+  let m;
+
+  while((m=re.exec(text))!==null){
+
+   let iso;
+
+   if(m[1].length===4)
+    iso=makeISO(m[1],m[2],m[3]);
+   else
+    iso=makeISO(m[3],m[2],m[1]);
+
+   if(iso&&!result.includes(iso))
+    result.push(iso);
+
+  }
+
+ }
+
+ return result.sort();
 }
 
+
+function dateNear(text,words){
+
+ let lower=text.toLowerCase();
+
+ for(let word of words){
+
+  let pos=lower.indexOf(word);
+
+  if(pos<0)continue;
+
+  let fragment=text.substring(
+   Math.max(0,pos-100),
+   Math.min(text.length,pos+220)
+  );
+
+  let dates=allDates(fragment);
+
+  if(dates.length)
+   return dates[dates.length-1];
+
+ }
+
+ return null;
+}
 
 
 /* =========================================================
-   STOCKAGE DU FICHIER
-========================================================= */
+   فهم الوثيقة حسب نوعها
+   ========================================================= */
 
-function readFileAsDataURL(file){
+function analyse(text,type){
 
-  return new Promise(
-    function(resolve,reject){
+ let dates=allDates(text);
 
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function(){
-
-          resolve(
-            reader.result
-          );
-
-        };
+ let documentDate=null;
+ let expiry=null;
 
 
-      reader.onerror =
-        reject;
+ /* ================= CARTE GRISE ================= */
+
+ if(type==="Carte grise"){
+
+  documentDate=
+   dateNear(text,[
+    "première immatriculation",
+    "date de première immatriculation",
+    "date d'immatriculation",
+    "date du certificat"
+   ])||dates[0]||null;
+
+  /*
+   مهم جداً:
+   لا نضع أبداً تاريخ carte grise
+   في خانة expiration.
+  */
+
+  return{
+   documentDate:documentDate,
+   expiry:null,
+   message:
+   "✓ Carte grise : la date détectée est une date de document. Aucune expiration ne sera créée."
+  };
+
+ }
 
 
-      reader.readAsDataURL(file);
+ /* ================= REVTC ================= */
 
-    }
-  );
+ if(type==="Attestation REVTC"){
+
+  /*
+   الوثيقة التي أرسلها المستخدم تحتوي:
+
+   à effet du 07 mai 2024
+
+   puis:
+
+   valable pour une durée de cinq ans,
+   jusqu'au 07 mai 2029
+
+   لذلك يجب اختيار 07/05/2029
+   كـ expiration.
+  */
+
+  expiry=
+   dateNear(text,[
+    "jusqu'au",
+    "jusqu au",
+    "valable jusqu",
+    "fin de validité",
+    "date de fin"
+   ]);
+
+
+  documentDate=
+   dateNear(text,[
+    "paris, le",
+    "à effet du",
+    "a effet du"
+   ])||dates[0]||null;
+
+
+  return{
+   documentDate:documentDate,
+   expiry:expiry,
+   message:expiry
+   ?
+   "✓ Fin de validité REVTC détectée : "+formatDate(expiry)
+   :
+   "⚠️ Fin de validité REVTC non détectée. Vérifiez-la manuellement."
+  };
+
+ }
+
+
+ /* ================= ASSURANCE ================= */
+
+ if(type==="Assurance"){
+
+  expiry=
+   dateNear(text,[
+    "échéance",
+    "echeance",
+    "expiration",
+    "expire le",
+    "expire au",
+    "valable jusqu",
+    "jusqu'au",
+    "date de fin"
+   ]);
+
+
+  return{
+   documentDate:dates[0]||null,
+   expiry:expiry,
+   message:expiry
+   ?
+   "✓ Échéance d'assurance détectée."
+   :
+   "⚠️ Échéance non détectée. Saisissez-la manuellement."
+  };
+
+ }
+
+
+ /* ================= MACARON ================= */
+
+ if(type==="Macaron VTC"){
+
+  expiry=
+   dateNear(text,[
+    "valable jusqu",
+    "jusqu'au",
+    "expiration",
+    "expire le",
+    "expire au",
+    "fin de validité"
+   ]);
+
+
+  if(!expiry){
+
+   let future=dates.filter(d=>{
+    let x=validDate(d);
+    return x&&x>=new Date();
+   });
+
+   if(future.length)
+    expiry=future[future.length-1];
+
+  }
+
+
+  return{
+   documentDate:dates[0]||null,
+   expiry:expiry,
+   message:expiry
+   ?
+   "✓ Date d'expiration du macaron détectée."
+   :
+   "⚠️ Date d'expiration non détectée."
+  };
+
+ }
+
+
+ /* ================= CONTROLE TECHNIQUE ================= */
+
+ if(type==="Contrôle technique"){
+
+  expiry=
+   dateNear(text,[
+    "prochaine échéance",
+    "prochaine echeance",
+    "échéance",
+    "echeance",
+    "valable jusqu",
+    "contre-visite avant"
+   ]);
+
+
+  return{
+   documentDate:
+    dateNear(text,[
+     "date du contrôle",
+     "date du controle"
+    ])||dates[0]||null,
+
+   expiry:expiry,
+
+   message:expiry
+   ?
+   "✓ Prochaine échéance détectée."
+   :
+   "⚠️ Prochaine échéance non détectée."
+  };
+
+ }
+
+
+ /* ================= CARTE VTC ================= */
+
+ if(type==="Carte VTC"){
+
+  expiry=
+   dateNear(text,[
+    "date d'expiration",
+    "date dexpiration",
+    "expiration",
+    "valable jusqu",
+    "jusqu'au",
+    "expire le"
+   ]);
+
+
+  documentDate=
+   dateNear(text,[
+    "date d'émission",
+    "date demission",
+    "date de délivrance",
+    "date de delivrance",
+    "délivrée le",
+    "delivree le"
+   ]);
+
+
+  return{
+   documentDate:documentDate,
+   expiry:expiry,
+   message:expiry
+   ?
+   "✓ Date d'expiration de la carte détectée."
+   :
+   "⚠️ Date d'expiration non détectée."
+  };
+
+ }
+
+
+ /* ================= AUTRE ================= */
+
+ expiry=
+  dateNear(text,[
+   "date d'expiration",
+   "expiration",
+   "échéance",
+   "echeance",
+   "expire le",
+   "expire au",
+   "valable jusqu",
+   "jusqu'au"
+  ]);
+
+
+ return{
+  documentDate:dates[0]||null,
+  expiry:expiry,
+  message:expiry
+  ?
+  "✓ Date d'expiration probable détectée."
+  :
+  "⚠️ Date d'expiration non détectée."
+ };
 
 }
 
 
+/* =========================================================
+   OCR
+   ========================================================= */
+
+async function scan(file){
+
+ if(!file)return;
+
+ currentFile=file;
+
+ let status=
+ document.getElementById("scanStatus");
+
+ let preview=
+ document.getElementById("preview");
+
+ let type=
+ document.getElementById("docType").value;
+
+
+ document.getElementById("saveDocBtn").disabled=true;
+
+ status.textContent=
+ "Lecture du document en cours…";
+
+
+ if(file.type.startsWith("image/")){
+
+  preview.src=
+  URL.createObjectURL(file);
+
+  preview.style.display="block";
+
+
+  try{
+
+   let result=
+   await Tesseract.recognize(
+    file,
+    "fra+eng",
+    {
+     logger:function(m){
+
+      if(m.status==="recognizing text"){
+
+       status.textContent=
+       "Lecture : "+
+       Math.round(
+        (m.progress||0)*100
+       )+"%";
+
+      }
+
+     }
+    }
+   );
+
+
+   let text=result.data.text||"";
+
+   let data=analyse(text,type);
+
+
+   if(data.documentDate)
+    document.getElementById("documentDate")
+    .value=data.documentDate;
+
+
+   if(RULES[type].expiry&&data.expiry)
+    document.getElementById("expiry")
+    .value=data.expiry;
+
+
+   status.textContent=data.message;
+
+
+  }catch(e){
+
+   console.log(e);
+
+   status.textContent=
+   "⚠️ Lecture automatique impossible. Vérifiez les dates manuellement.";
+
+  }
+
+ }else{
+
+  status.textContent=
+  "PDF sélectionné. Vérifiez ou saisissez les dates manuellement.";
+
+ }
+
+
+ currentFileData=
+ await fileData(file);
+
+
+ updateButton();
+
+}
+
 
 /* =========================================================
-   FICHIERS
-========================================================= */
+   CONVERSION FICHIER
+   ========================================================= */
 
-document
-  .getElementById("filePicker")
-  .addEventListener(
-    "change",
-    function(){
+function fileData(file){
 
-      if(
-        this.files &&
-        this.files[0]
-      ){
+ return new Promise(function(resolve,reject){
 
-        scanDocument(
-          this.files[0]
-        );
+  let reader=new FileReader();
 
-        selectedFile =
-          this.files[0];
+  reader.onload=function(){
+   resolve(reader.result);
+  };
 
-      }
+  reader.onerror=reject;
 
-    }
-  );
+  reader.readAsDataURL(file);
+
+ });
+
+}
 
 
-document
-  .getElementById("cameraPicker")
-  .addEventListener(
-    "change",
-    function(){
+/* =========================================================
+   BOUTON ENREGISTRER
+   ========================================================= */
 
-      if(
-        this.files &&
-        this.files[0]
-      ){
+function updateButton(){
 
-        scanDocument(
-          this.files[0]
-        );
+ let type=
+ document.getElementById("docType").value;
 
-        selectedFile =
-          this.files[0];
+ let btn=
+ document.getElementById("saveDocBtn");
 
-      }
+ if(!currentFile){
 
-    }
-  );
+  btn.disabled=true;
+
+  return;
+ }
 
 
-let selectedFile=null;
+ if(RULES[type].expiry){
 
+  btn.disabled=
+   !document.getElementById("expiry").value;
+
+ }else{
+
+  /*
+   Carte grise:
+   fichier suffisant.
+   Pas d'expiration obligatoire.
+  */
+
+  btn.disabled=false;
+
+ }
+
+}
 
 
 /* =========================================================
    ENREGISTRER DOCUMENT
-========================================================= */
+   ========================================================= */
 
-async function saveDoc(){
+function saveDoc(){
 
-  const type =
-    document.getElementById(
-      "docType"
-    ).value;
+ let type=
+ document.getElementById("docType").value;
 
+ let name=
+ document.getElementById("docName").value.trim();
 
-  const name =
-    document.getElementById(
-      "docName"
-    ).value.trim();
+ let documentDate=
+ document.getElementById("documentDate").value;
 
+ let expiry=
+ RULES[type].expiry
+ ?
+ document.getElementById("expiry").value
+ :
+ null;
 
-  const documentDate =
-    document.getElementById(
-      "documentDate"
-    ).value;
 
-
-  const expiry =
-    document.getElementById(
-      "expiry"
-    ).value;
-
-
-  /*
-    REVTC doit avoir une expiration.
-  */
-
-  if(
-    type==="REVTC" &&
-    !expiry
-  ){
-
-    alert(
-      "Pour l'attestation REVTC, veuillez indiquer la date d'expiration, par exemple 07/05/2029."
-    );
-
-    return;
-
-  }
-
-
-  /*
-    Les autres documents à expiration
-    doivent aussi avoir une expiration.
-  */
-
-  if(
-    hasExpiry(type) &&
-    !expiry
-  ){
-
-    alert(
-      "Veuillez indiquer la date d'expiration."
-    );
-
-    return;
-
-  }
-
-
-  /*
-    Pour carte grise :
-    aucune expiration.
-  */
-
-  let fileData=null;
-  let fileName="";
-  let fileType="";
-
-
-  if(selectedFile){
-
-    try{
-
-      fileData =
-        await readFileAsDataURL(
-          selectedFile
-        );
-
-
-      fileName =
-        selectedFile.name;
-
-
-      fileType =
-        selectedFile.type;
-
-    }
-
-    catch(error){
-
-      console.error(error);
-
-    }
-
-  }
-
-
-  const doc={
-
-    id:Date.now(),
-
-    type:type,
-
-    name:
-      name ||
-      type,
-
-    documentDate:
-      documentDate || "",
-
-    expiry:
-      hasExpiry(type)
-        ? expiry
-        : "",
-
-    fileName:
-      fileName,
-
-    fileType:
-      fileType,
-
-    fileData:
-      fileData
-
-  };
-
-
-  state.docs.push(doc);
-
-  saveState();
-
-
-  /*
-    Nettoyage
-  */
-
-  document.getElementById(
-    "docName"
-  ).value="";
-
-
-  document.getElementById(
-    "documentDate"
-  ).value="";
-
-
-  document.getElementById(
-    "expiry"
-  ).value="";
-
-
-  document.getElementById(
-    "preview"
-  ).style.display="none";
-
-
-  document.getElementById(
-    "fileName"
-  ).textContent="";
-
-
-  document.getElementById(
-    "scanStatus"
-  ).textContent="";
-
-
-  document.getElementById(
-    "filePicker"
-  ).value="";
-
-
-  document.getElementById(
-    "cameraPicker"
-  ).value="";
-
-
-  selectedFile=null;
-
+ if(!currentFile){
 
   alert(
-    "Document enregistré."
+   "Veuillez choisir un fichier ou prendre une photo."
   );
 
+  return;
+ }
 
-  go("documents");
+
+ if(RULES[type].expiry&&!expiry){
+
+  alert(
+   "Veuillez indiquer la date d'expiration."
+  );
+
+  return;
+ }
+
+
+ let doc={
+  id:Date.now(),
+  type:type,
+  name:name||type,
+  documentDate:documentDate||null,
+  expiry:expiry,
+  fileName:currentFile.name||"document",
+  fileType:currentFile.type||"",
+  fileData:currentFileData
+ };
+
+
+ state.docs.push(doc);
+
+
+ try{
+
+  save();
+
+ }catch(e){
+
+  state.docs.pop();
+
+  alert(
+   "Le document est trop volumineux pour être enregistré."
+  );
+
+  return;
+ }
+
+
+ resetForm();
+
+ alert("Document enregistré.");
+
+ go("documents");
 
 }
 
 
+/* =========================================================
+   RESET
+   ========================================================= */
+
+function resetForm(){
+
+ document.getElementById("docName").value="";
+ document.getElementById("documentDate").value="";
+ document.getElementById("expiry").value="";
+
+ document.getElementById("preview").style.display="none";
+ document.getElementById("preview").removeAttribute("src");
+
+ document.getElementById("scanStatus").textContent="";
+
+ document.getElementById("filePicker").value="";
+ document.getElementById("cameraPicker").value="";
+
+ currentFile=null;
+ currentFileData=null;
+
+ updateButton();
+
+}
+
 
 /* =========================================================
-   INITIALISATION
-========================================================= */
+   VOIR LE DOCUMENT
+   ========================================================= */
 
-updateDocumentRules();
+function viewDoc(id){
+
+ let doc=
+ state.docs.find(d=>d.id===id);
+
+ if(!doc||!doc.fileData){
+
+  alert("Le fichier n'est pas disponible.");
+
+  return;
+ }
+
+
+ let win=window.open();
+
+ if(!win){
+
+  alert(
+   "Le navigateur a bloqué l'ouverture."
+  );
+
+  return;
+ }
+
+
+ if(doc.fileType==="application/pdf"){
+
+  win.location.href=doc.fileData;
+
+ }else{
+
+  win.document.write(`
+  <html>
+  <head>
+  <meta name="viewport"
+  content="width=device-width,initial-scale=1">
+  <title>${esc(doc.name)}</title>
+
+  <style>
+  body{
+   margin:0;background:#111;
+   display:flex;justify-content:center;
+   align-items:center;min-height:100vh
+  }
+  img{
+   max-width:100%;
+   max-height:100vh;
+   object-fit:contain
+  }
+  </style>
+
+  </head>
+
+  <body>
+  <img src="${doc.fileData}">
+  </body>
+  </html>
+  `);
+
+  win.document.close();
+
+ }
+
+}
+
+
+/* =========================================================
+   SUPPRIMER
+   ========================================================= */
+
+function deleteDoc(id){
+
+ if(!confirm("Supprimer ce document ?"))
+  return;
+
+ state.docs=
+ state.docs.filter(d=>d.id!==id);
+
+ save();
+
+ render();
+
+}
+
+
+/* =========================================================
+   EVENEMENTS
+   ========================================================= */
+
+document
+.getElementById("filePicker")
+.addEventListener("change",function(){
+
+ if(this.files&&this.files[0])
+  scan(this.files[0]);
+
+});
+
+
+document
+.getElementById("cameraPicker")
+.addEventListener("change",function(){
+
+ if(this.files&&this.files[0])
+  scan(this.files[0]);
+
+});
+
+
+document
+.getElementById("expiry")
+.addEventListener("change",updateButton);
+
+
+/* =========================================================
+   DEMARRAGE
+   ========================================================= */
+
+load();
+
+changeType();
 
 render();
 
-go("home");
+document
+.getElementById("navHome")
+.classList.add("active");
 
 </script>
 
