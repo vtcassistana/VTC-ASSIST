@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
       content="width=device-width, initial-scale=1">
 
-<meta name="theme-color"
-      content="#7147e8">
+<meta name="theme-color" content="#7147e8">
 
 <title>VTC ASSIST</title>
 
@@ -48,7 +46,7 @@ header{
 
 h1{
   margin:0;
-  font-size:31px;
+  font-size:30px;
 }
 
 h2{
@@ -100,6 +98,11 @@ h2{
   margin-top:6px;
 }
 
+.subtitle{
+  color:#777;
+  margin-top:7px;
+}
+
 .section-title{
   margin:25px 0 12px;
 }
@@ -108,7 +111,7 @@ h2{
   width:100%;
   border:0;
   border-radius:16px;
-  padding:16px;
+  padding:16px 14px;
   font-size:18px;
   margin-top:10px;
   min-height:56px;
@@ -116,7 +119,7 @@ h2{
 
 .primary{
   background:#7147e8;
-  color:#fff;
+  color:white;
 }
 
 .secondary{
@@ -129,9 +132,21 @@ h2{
   color:#a33;
 }
 
-.success{
+.info{
   background:#eefaf2;
   color:#287048;
+  border-radius:16px;
+  padding:16px;
+  margin:16px 0;
+  line-height:1.5;
+}
+
+.empty{
+  color:#777;
+  background:#f1f0f5;
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
 }
 
 label{
@@ -147,8 +162,7 @@ select{
   border:1px solid #d8d8df;
   border-radius:13px;
   font-size:17px;
-  background:#fff;
-  color:#222;
+  background:white;
 }
 
 input:focus,
@@ -157,30 +171,44 @@ select:focus{
   border-color:#7147e8;
 }
 
-.info{
-  background:#eefaf2;
-  color:#287048;
-  border-radius:16px;
-  padding:16px;
-  margin:16px 0;
-  line-height:1.5;
+.hidden{
+  display:none !important;
 }
 
-.warning-box{
-  background:#fff8df;
-  color:#755d16;
-  border-radius:16px;
-  padding:16px;
-  margin:16px 0;
-  line-height:1.5;
-}
-
-.empty{
+.file-name{
   color:#777;
-  background:#f1f0f5;
+  font-size:15px;
+  margin-top:10px;
+  word-break:break-word;
+}
+
+.preview{
+  display:none;
+  width:100%;
+  max-height:350px;
+  object-fit:contain;
   border-radius:16px;
-  padding:20px;
-  text-align:center;
+  margin-top:15px;
+  background:#eee;
+}
+
+.scan-status{
+  margin-top:14px;
+  color:#666;
+  line-height:1.5;
+}
+
+.category-description{
+  color:#777;
+  font-size:15px;
+  line-height:1.5;
+  margin-top:10px;
+}
+
+.small-note{
+  color:#777;
+  font-size:14px;
+  line-height:1.5;
 }
 
 .doc{
@@ -228,7 +256,6 @@ select:focus{
 
 .doc-line{
   margin:9px 0;
-  line-height:1.4;
 }
 
 .doc-status{
@@ -244,52 +271,6 @@ select:focus{
 
 .doc-actions .btn{
   margin-top:0;
-}
-
-.file-name{
-  color:#777;
-  font-size:15px;
-  word-break:break-word;
-  margin-top:10px;
-}
-
-.preview{
-  display:none;
-  width:100%;
-  max-height:360px;
-  object-fit:contain;
-  border-radius:16px;
-  margin-top:15px;
-  background:#eee;
-}
-
-.scan-status{
-  margin-top:14px;
-  color:#666;
-  line-height:1.5;
-}
-
-.category-description{
-  color:#777;
-  font-size:15px;
-  line-height:1.5;
-  margin-top:10px;
-}
-
-.hidden{
-  display:none !important;
-}
-
-.offer{
-  background:linear-gradient(120deg,#7546e8,#9b55df);
-  color:#fff;
-  border-radius:22px;
-  padding:23px;
-  margin-top:22px;
-}
-
-.offer h2{
-  margin:0 0 10px;
 }
 
 .alert-card{
@@ -323,10 +304,12 @@ select:focus{
   line-height:1.5;
 }
 
-.small-note{
-  color:#777;
-  font-size:14px;
-  line-height:1.5;
+.offer{
+  background:linear-gradient(120deg,#7546e8,#9b55df);
+  color:white;
+  border-radius:22px;
+  padding:23px;
+  margin-top:22px;
 }
 
 nav{
@@ -335,7 +318,7 @@ nav{
   right:0;
   bottom:0;
   height:78px;
-  background:#fff;
+  background:white;
   border-top:1px solid #ddd;
   display:flex;
   z-index:100;
@@ -344,7 +327,7 @@ nav{
 nav button{
   flex:1;
   border:0;
-  background:#fff;
+  background:white;
   color:#777;
   font-size:14px;
 }
@@ -368,159 +351,111 @@ nav button.active{
 }
 
 </style>
-
 </head>
 
 <body>
 
 
-<!-- =====================================================
+<!-- =========================
      ACCUEIL
-===================================================== -->
+========================= -->
 
 <section id="home" class="page active">
 
 <header>
-
-<h1>Bonjour 👋</h1>
-
-<div class="muted">
-VTC ASSIST
-</div>
-
+  <h1>Bonjour 👋</h1>
+  <div class="subtitle">VTC ASSIST</div>
 </header>
 
 <div class="container">
 
+  <div class="card vehicle-card"
+       onclick="go('vehicle')">
 
-<div class="card vehicle-card"
-     onclick="go('vehicle')">
+    <div class="vehicle-icon">🚘</div>
 
-<div class="vehicle-icon">
-🚘
-</div>
+    <div>
+      <div id="vehicleTitle"
+           class="vehicle-title">
+        Mon véhicule VTC
+      </div>
 
-<div>
+      <div id="vehicleSub"
+           class="muted">
+        Ajoutez votre véhicule
+      </div>
+    </div>
 
-<div id="vehicleTitle"
-     class="vehicle-title">
-Mon véhicule VTC
-</div>
+  </div>
 
-<div id="vehicleSub"
-     class="muted">
-Ajoutez votre véhicule
-</div>
+  <h2 class="section-title">
+    Mes documents
+  </h2>
 
-</div>
+  <div id="homeDocs"></div>
 
-</div>
+  <button class="btn primary"
+          onclick="startAddDocument()">
+    ＋ Ajouter un document
+  </button>
 
+  <div class="info">
+    ✓ Les alertes sont activées uniquement
+    pour les documents qui possèdent réellement
+    une date d'expiration.
+  </div>
 
-<h2 class="section-title">
-Mes documents
-</h2>
-
-
-<div id="homeDocs"></div>
-
-
-<button class="btn primary"
-        onclick="openAdd()">
-
-＋ Ajouter un document
-
-</button>
-
-
-<div class="info">
-
-✓ Les alertes sont activées uniquement
-pour les documents qui possèdent réellement
-une date d'expiration.
-
-</div>
-
-
-<div class="offer">
-
-<h2>
-AVANTAGES VTC
-</h2>
-
-<p>
-<b>Économisez chez nos partenaires</b>
-</p>
-
-<p>
-Garages · Pneus · Lavage · Assurance
-</p>
-
-</div>
+  <div class="offer">
+    <h2>AVANTAGES VTC</h2>
+    <p><b>Économisez chez nos partenaires</b></p>
+    <p>Garages · Pneus · Lavage · Assurance</p>
+  </div>
 
 </div>
 
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      VEHICULE
-===================================================== -->
+========================= -->
 
 <section id="vehicle" class="page">
 
 <header>
-
-<h1>🚘 Mon véhicule</h1>
-
-<div class="muted">
-Informations de votre VTC
-</div>
-
+  <h1>🚘 Mon véhicule</h1>
+  <div class="subtitle">
+    Informations de votre VTC
+  </div>
 </header>
-
 
 <div class="container">
 
 <div class="card">
 
-<h2>
-Informations du véhicule
-</h2>
+<h2>Informations du véhicule</h2>
 
-
-<label>
-Marque
-</label>
+<label>Marque</label>
 
 <input id="make"
        type="text"
        placeholder="Ex : BYD">
 
-
-<label>
-Modèle
-</label>
+<label>Modèle</label>
 
 <input id="model"
        type="text"
        placeholder="Ex : Seal">
 
-
-<label>
-Immatriculation
-</label>
+<label>Immatriculation</label>
 
 <input id="plate"
        type="text"
        placeholder="Ex : GZ-649-PB">
 
-
 <button class="btn primary"
         onclick="saveVehicle()">
-
-✓ Enregistrer le véhicule
-
+  ✓ Enregistrer le véhicule
 </button>
 
 </div>
@@ -530,41 +465,31 @@ Immatriculation
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      DOCUMENTS
-===================================================== -->
+========================= -->
 
 <section id="documents" class="page">
 
 <header>
-
-<h1>📄 Mes documents</h1>
-
-<div class="muted">
-Tous vos documents VTC
-</div>
-
+  <h1>📄 Mes documents</h1>
+  <div class="subtitle">
+    Tous vos documents VTC
+  </div>
 </header>
-
 
 <div class="container">
 
 <div id="docList"></div>
 
-
 <button class="btn primary"
-        onclick="openAdd()">
-
-＋ Ajouter un document
-
+        onclick="startAddDocument()">
+  ＋ Ajouter un document
 </button>
 
-
 <div class="info">
-
-✓ Les documents sans date d'expiration
-restent enregistrés sans générer d'alerte.
-
+  ✓ Les documents sans date d'expiration
+  restent enregistrés sans générer d'alerte.
 </div>
 
 </div>
@@ -572,9 +497,9 @@ restent enregistrés sans générer d'alerte.
 </section>
 
 
-<!-- =====================================================
-     AJOUT
-===================================================== -->
+<!-- =========================
+     AJOUT DOCUMENT
+========================= -->
 
 <section id="add" class="page">
 
@@ -582,29 +507,20 @@ restent enregistrés sans générer d'alerte.
 
 <h1>＋ Ajouter un document</h1>
 
-<div class="muted">
-Ajoutez votre document
+<div class="subtitle">
+  Choisissez le type de document
 </div>
 
 </header>
 
-
 <div class="container">
 
 
-<!-- TYPE -->
-
 <div class="card">
 
-<h2>
-1. Type de document
-</h2>
+<h2>1. Type de document</h2>
 
-
-<label>
-Catégorie
-</label>
-
+<label>Catégorie</label>
 
 <select id="docType"
         onchange="updateDocumentForm()">
@@ -635,7 +551,6 @@ Autre document
 
 </select>
 
-
 <div id="categoryDescription"
      class="category-description">
 </div>
@@ -643,28 +558,19 @@ Autre document
 </div>
 
 
-<!-- FICHIER -->
-
 <div class="card">
 
-<h2>
-2. Document
-</h2>
-
+<h2>2. Ajouter le document</h2>
 
 <input id="filePicker"
        type="file"
        accept="image/*,.pdf"
        class="hidden">
 
-
 <button class="btn secondary"
         onclick="chooseFile()">
-
-📁 Choisir un fichier
-
+  📁 Choisir un fichier
 </button>
-
 
 <input id="cameraPicker"
        type="file"
@@ -672,24 +578,18 @@ Autre document
        capture="environment"
        class="hidden">
 
-
 <button class="btn secondary"
         onclick="takePhoto()">
-
-📷 Photographier le document
-
+  📷 Photographier le document
 </button>
-
 
 <img id="preview"
      class="preview"
-     alt="Aperçu">
-
+     alt="Aperçu du document">
 
 <div id="selectedFileName"
      class="file-name">
 </div>
-
 
 <div id="scanStatus"
      class="scan-status">
@@ -698,18 +598,11 @@ Autre document
 </div>
 
 
-<!-- INFORMATIONS -->
-
 <div class="card">
 
-<h2>
-3. Informations
-</h2>
+<h2>3. Informations</h2>
 
-
-<label>
-Nom du document
-</label>
+<label>Nom du document</label>
 
 <input id="docName"
        type="text"
@@ -718,18 +611,14 @@ Nom du document
 
 <div id="documentDateBlock">
 
-<label>
-Date du document
-</label>
+<label>Date du document</label>
 
 <input id="documentDate"
        type="date">
 
 <div class="small-note">
-
-Pour le REVTC :
-date d'inscription / effet.
-
+Date d'émission, d'inscription ou de première
+immatriculation selon le document.
 </div>
 
 </div>
@@ -737,15 +626,14 @@ date d'inscription / effet.
 
 <div id="expiryBlock">
 
-<label>
-Date d'expiration
-</label>
+<label>Date d'expiration</label>
 
 <input id="expiry"
        type="date">
 
 <div id="expiryHelp"
      class="small-note">
+Cette date sert aux alertes d'expiration.
 </div>
 
 </div>
@@ -754,25 +642,20 @@ Date d'expiration
 <div id="noExpiryMessage"
      class="info hidden">
 
-✓ Aucune date d'expiration
-ne sera suivie pour ce document.
+✓ Ce document n'a pas de date d'expiration
+à surveiller automatiquement.
 
 </div>
 
 
 <button class="btn primary"
         onclick="saveDoc()">
-
-✓ Enregistrer le document
-
+  ✓ Enregistrer le document
 </button>
-
 
 <button class="btn secondary"
         onclick="go('documents')">
-
-Annuler
-
+  Annuler
 </button>
 
 </div>
@@ -782,9 +665,9 @@ Annuler
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      ALERTES
-===================================================== -->
+========================= -->
 
 <section id="alerts" class="page">
 
@@ -792,12 +675,11 @@ Annuler
 
 <h1>🔔 Mes alertes</h1>
 
-<div class="muted">
+<div class="subtitle">
 Surveillance des expirations
 </div>
 
 </header>
-
 
 <div class="container">
 
@@ -808,55 +690,40 @@ Surveillance des expirations
 </section>
 
 
-<!-- =====================================================
+<!-- =========================
      NAVIGATION
-===================================================== -->
+========================= -->
 
 <nav>
 
 <button id="navHome"
         onclick="go('home')">
 
-<div class="nav-icon">
-🏠
-</div>
-
+<div class="nav-icon">🏠</div>
 Accueil
 
 </button>
 
-
 <button id="navDocs"
         onclick="go('documents')">
 
-<div class="nav-icon">
-📄
-</div>
-
+<div class="nav-icon">📄</div>
 Documents
 
 </button>
 
-
 <button id="navAlerts"
         onclick="go('alerts')">
 
-<div class="nav-icon">
-🔔
-</div>
-
+<div class="nav-icon">🔔</div>
 Alertes
 
 </button>
 
-
 <button id="navVehicle"
         onclick="go('vehicle')">
 
-<div class="nav-icon">
-🚘
-</div>
-
+<div class="nav-icon">🚘</div>
 Véhicule
 
 </button>
@@ -864,57 +731,70 @@ Véhicule
 </nav>
 
 
-<!-- =====================================================
-     TESSERACT OCR
-===================================================== -->
+<!-- =========================
+     OCR
+========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
 
 <script>
 
-/* =====================================================
+/*
+=========================================================
+ VTC ASSIST
+ Nouvelle version
+ OCR français + dates avec mois
+=========================================================
+*/
+
+
+/* ======================================================
    STOCKAGE
-===================================================== */
+====================================================== */
 
-const STORAGE_KEY =
-"vtc-assist-final-v1";
+/*
+   Nouveau nom volontairement différent.
+   Les anciens essais ne seront donc pas mélangés.
+*/
+
+const STORAGE_KEY = "vtc-assist-v2-clean";
 
 
-let state;
+let state = {
+  vehicle:null,
+  docs:[]
+};
 
 
 try{
 
-  state =
-    JSON.parse(
-      localStorage.getItem(STORAGE_KEY)
-    );
+  const saved =
+    localStorage.getItem(STORAGE_KEY);
 
-}catch(e){
+  if(saved){
 
-  state=null;
+    const parsed =
+      JSON.parse(saved);
 
-}
+    if(parsed &&
+       typeof parsed === "object"){
 
+      state = parsed;
 
-if(
-  !state ||
-  typeof state!=="object"
-){
+    }
 
-  state={
-    vehicle:null,
-    docs:[]
-  };
+  }
+
+}catch(error){
+
+  console.error(error);
 
 }
 
 
 if(!Array.isArray(state.docs)){
-
   state.docs=[];
-
 }
 
 
@@ -928,31 +808,24 @@ function saveState(){
 }
 
 
-/* =====================================================
+/* ======================================================
    NAVIGATION
-===================================================== */
+====================================================== */
 
 function go(id){
 
   document
     .querySelectorAll(".page")
-    .forEach(function(page){
-
+    .forEach(page=>{
       page.classList.remove("active");
-
     });
-
 
   const page =
     document.getElementById(id);
 
-
   if(page){
-
     page.classList.add("active");
-
   }
-
 
   updateNavigation(id);
 
@@ -963,58 +836,28 @@ function go(id){
 }
 
 
-/* =====================================================
-   OUVRIR AJOUT
-===================================================== */
-
-function openAdd(){
-
-  resetAddForm();
-
-  go("add");
-
-}
-
-
-/* =====================================================
-   NAVIGATION ACTIVE
-===================================================== */
-
 function updateNavigation(id){
 
   const map={
-
     home:"navHome",
-
     documents:"navDocs",
-
     alerts:"navAlerts",
-
     vehicle:"navVehicle"
-
   };
-
 
   document
     .querySelectorAll("nav button")
-    .forEach(function(button){
-
-      button.classList.remove("active");
-
+    .forEach(btn=>{
+      btn.classList.remove("active");
     });
-
 
   if(map[id]){
 
-    const button =
-      document.getElementById(
-        map[id]
-      );
+    const btn =
+      document.getElementById(map[id]);
 
-    if(button){
-
-      button.classList.add("active");
-
+    if(btn){
+      btn.classList.add("active");
     }
 
   }
@@ -1022,39 +865,26 @@ function updateNavigation(id){
 }
 
 
-/* =====================================================
+/* ======================================================
    VEHICULE
-===================================================== */
+====================================================== */
 
 function saveVehicle(){
 
   const make =
-    document
-      .getElementById("make")
-      .value
-      .trim();
-
+    document.getElementById("make")
+      .value.trim();
 
   const model =
-    document
-      .getElementById("model")
-      .value
-      .trim();
-
+    document.getElementById("model")
+      .value.trim();
 
   const plate =
-    document
-      .getElementById("plate")
-      .value
-      .trim()
+    document.getElementById("plate")
+      .value.trim()
       .toUpperCase();
 
-
-  if(
-    !make &&
-    !model &&
-    !plate
-  ){
+  if(!make && !model && !plate){
 
     alert(
       "Veuillez remplir les informations du véhicule."
@@ -1064,205 +894,203 @@ function saveVehicle(){
 
   }
 
-
   state.vehicle={
-
-    make:make,
-
-    model:model,
-
-    plate:plate
-
+    make,
+    model,
+    plate
   };
-
 
   saveState();
 
-
-  alert(
-    "✓ Véhicule enregistré."
-  );
-
+  alert("✓ Véhicule enregistré.");
 
   go("home");
 
 }
 
 
-/* =====================================================
-   TYPES DOCUMENTS
-===================================================== */
+/* ======================================================
+   TYPES
+====================================================== */
 
 const DOCUMENT_TYPES={
-
 
   "Assurance":{
 
     hasDocumentDate:true,
-
     hasExpiry:true,
 
     description:
-      "La date d'expiration de l'assurance est surveillée."
+      "La date d'expiration de l'assurance sera utilisée pour les alertes."
 
   },
-
 
   "Macaron VTC":{
 
     hasDocumentDate:false,
-
     hasExpiry:true,
 
     description:
-      "La date de validité du macaron est surveillée."
+      "La date de validité du macaron sera surveillée."
 
   },
-
 
   "Carte grise":{
 
     hasDocumentDate:true,
-
     hasExpiry:false,
 
     description:
-      "Aucune expiration automatique pour la carte grise."
+      "Aucune date d'expiration ne sera créée pour la carte grise."
 
   },
-
 
   "Contrôle technique":{
 
     hasDocumentDate:true,
-
     hasExpiry:true,
 
     description:
-      "La prochaine échéance du contrôle technique est surveillée."
+      "La prochaine échéance du contrôle technique sera surveillée."
 
   },
-
 
   "REVTC":{
 
     hasDocumentDate:true,
-
     hasExpiry:true,
 
     description:
-      "Le programme recherche automatiquement la date d'inscription et surtout la date située après « jusqu'au » ou « valable jusqu'au »."
+      "Pour le REVTC, le programme cherche en priorité la date située après « jusqu'au »."
 
   },
-
 
   "Autre":{
 
     hasDocumentDate:true,
-
     hasExpiry:true,
 
     description:
-      "Vous pouvez choisir manuellement la date d'expiration."
+      "Vous pouvez enregistrer une date d'expiration manuellement."
 
   }
 
 };
 
 
-/* =====================================================
+/* ======================================================
+   NOUVEAU DOCUMENT
+====================================================== */
+
+function startAddDocument(){
+
+  resetAddForm();
+
+  go("add");
+
+}
+
+
+/* ======================================================
    FORMULAIRE
-===================================================== */
+====================================================== */
 
 function updateDocumentForm(){
 
   const type =
-    document
-      .getElementById("docType")
-      .value;
-
+    document.getElementById("docType").value;
 
   const config =
     DOCUMENT_TYPES[type];
 
-
-  document
-    .getElementById(
-      "categoryDescription"
-    )
-    .textContent =
-      config.description;
+  document.getElementById(
+    "categoryDescription"
+  ).textContent =
+    config.description;
 
 
-  document
-    .getElementById(
+  const documentDateBlock =
+    document.getElementById(
       "documentDateBlock"
-    )
-    .classList
-    .toggle(
-      "hidden",
-      !config.hasDocumentDate
     );
 
-
-  document
-    .getElementById(
+  const expiryBlock =
+    document.getElementById(
       "expiryBlock"
-    )
-    .classList
-    .toggle(
-      "hidden",
-      !config.hasExpiry
     );
 
-
-  document
-    .getElementById(
+  const noExpiryMessage =
+    document.getElementById(
       "noExpiryMessage"
-    )
-    .classList
-    .toggle(
-      "hidden",
-      config.hasExpiry
     );
 
-
-  const help =
+  const expiryHelp =
     document.getElementById(
       "expiryHelp"
     );
 
 
+  if(config.hasDocumentDate){
+
+    documentDateBlock
+      .classList.remove("hidden");
+
+  }else{
+
+    documentDateBlock
+      .classList.add("hidden");
+
+  }
+
+
+  if(config.hasExpiry){
+
+    expiryBlock
+      .classList.remove("hidden");
+
+    noExpiryMessage
+      .classList.add("hidden");
+
+  }else{
+
+    expiryBlock
+      .classList.add("hidden");
+
+    noExpiryMessage
+      .classList.remove("hidden");
+
+  }
+
+
   if(type==="REVTC"){
 
-    help.textContent =
-      "Recherche automatique de « jusqu'au », « valable jusqu'au », dates numériques et dates avec mois en français.";
+    expiryHelp.textContent =
+      "Le programme cherche automatiquement le jour, le mois et l'année après « jusqu'au ».";
 
   }
 
   else if(type==="Carte grise"){
 
-    help.textContent =
-      "Aucune expiration ne sera enregistrée.";
+    expiryHelp.textContent =
+      "Aucune date d'expiration ne sera enregistrée.";
 
   }
 
   else{
 
-    help.textContent =
-      "Cette date sera utilisée pour les alertes.";
+    expiryHelp.textContent =
+      "Cette date sert aux alertes d'expiration.";
 
   }
 
 }
 
 
-/* =====================================================
+/* ======================================================
    FICHIERS
-===================================================== */
+====================================================== */
 
 let currentFile=null;
-
 let currentFileData=null;
 
 
@@ -1290,15 +1118,8 @@ document
     "change",
     function(){
 
-      if(
-        this.files &&
-        this.files[0]
-      ){
-
-        processFile(
-          this.files[0]
-        );
-
+      if(this.files && this.files[0]){
+        processFile(this.files[0]);
       }
 
     }
@@ -1311,78 +1132,30 @@ document
     "change",
     function(){
 
-      if(
-        this.files &&
-        this.files[0]
-      ){
-
-        processFile(
-          this.files[0]
-        );
-
+      if(this.files && this.files[0]){
+        processFile(this.files[0]);
       }
 
     }
   );
 
 
-/* =====================================================
-   FILE → DATA
-===================================================== */
-
-function fileToDataURL(file){
-
-  return new Promise(
-    function(resolve,reject){
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function(){
-
-          resolve(
-            reader.result
-          );
-
-        };
-
-
-      reader.onerror =
-        reject;
-
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
-}
-
-
-/* =====================================================
+/* ======================================================
    TRAITEMENT FICHIER
-===================================================== */
+====================================================== */
 
 async function processFile(file){
 
   currentFile=file;
-
   currentFileData=null;
 
-
   const preview =
-    document.getElementById(
-      "preview"
-    );
+    document.getElementById("preview");
 
-
-  const name =
+  const fileName =
     document.getElementById(
       "selectedFileName"
     );
-
 
   const status =
     document.getElementById(
@@ -1390,17 +1163,14 @@ async function processFile(file){
     );
 
 
-  name.textContent =
+  fileName.textContent =
     "📎 "+file.name;
-
 
   status.textContent =
     "Préparation du document…";
 
 
-  if(
-    file.type.startsWith("image/")
-  ){
+  if(file.type.startsWith("image/")){
 
     preview.src =
       URL.createObjectURL(file);
@@ -1414,7 +1184,7 @@ async function processFile(file){
       currentFileData =
         await fileToDataURL(file);
 
-    }catch(e){
+    }catch(error){
 
       currentFileData=null;
 
@@ -1427,239 +1197,42 @@ async function processFile(file){
 
   else{
 
-    preview.style.display =
-      "none";
-
+    preview.style.display="none";
 
     try{
 
       currentFileData =
         await fileToDataURL(file);
 
-    }catch(e){
+    }catch(error){
 
       currentFileData=null;
 
     }
 
-
     status.textContent =
-      "✓ PDF sélectionné. Vérifiez les dates manuellement.";
+      "✓ PDF sélectionné. Les dates peuvent être saisies manuellement.";
 
   }
 
 }
 
 
-/* =====================================================
-   AMELIORATION IMAGE
-===================================================== */
-
-function preprocessImage(file){
+function fileToDataURL(file){
 
   return new Promise(
-    function(resolve,reject){
+    (resolve,reject)=>{
 
-      const img =
-        new Image();
+      const reader =
+        new FileReader();
 
+      reader.onload =
+        ()=>resolve(reader.result);
 
-      const url =
-        URL.createObjectURL(file);
+      reader.onerror =
+        reject;
 
-
-      img.onload =
-        function(){
-
-          try{
-
-            /*
-             * Agrandissement.
-             */
-
-            const scale=4;
-
-
-            const canvas =
-              document.createElement(
-                "canvas"
-              );
-
-
-            canvas.width =
-              img.width*scale;
-
-
-            canvas.height =
-              img.height*scale;
-
-
-            const ctx =
-              canvas.getContext(
-                "2d"
-              );
-
-
-            ctx.imageSmoothingEnabled =
-              true;
-
-
-            ctx.imageSmoothingQuality =
-              "high";
-
-
-            ctx.drawImage(
-              img,
-              0,
-              0,
-              canvas.width,
-              canvas.height
-            );
-
-
-            const imageData =
-              ctx.getImageData(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-              );
-
-
-            const data =
-              imageData.data;
-
-
-            /*
-             * Noir/blanc avec
-             * amélioration du contraste.
-             */
-
-            for(
-              let i=0;
-              i<data.length;
-              i+=4
-            ){
-
-              const r=data[i];
-              const g=data[i+1];
-              const b=data[i+2];
-
-
-              let gray =
-                0.299*r+
-                0.587*g+
-                0.114*b;
-
-
-              /*
-               * Contraste.
-               */
-
-              gray =
-                (gray-128)*1.8+128;
-
-
-              /*
-               * Nettoyage léger
-               * des zones très claires.
-               */
-
-              if(gray>245){
-
-                gray=255;
-
-              }
-
-
-              if(gray<35){
-
-                gray=0;
-
-              }
-
-
-              gray =
-                Math.max(
-                  0,
-                  Math.min(
-                    255,
-                    gray
-                  )
-                );
-
-
-              data[i]=gray;
-              data[i+1]=gray;
-              data[i+2]=gray;
-
-            }
-
-
-            ctx.putImageData(
-              imageData,
-              0,
-              0
-            );
-
-
-            canvas.toBlob(
-              function(blob){
-
-                URL.revokeObjectURL(
-                  url
-                );
-
-
-                if(blob){
-
-                  resolve(blob);
-
-                }else{
-
-                  reject(
-                    new Error(
-                      "Image impossible à traiter"
-                    )
-                  );
-
-                }
-
-              },
-              "image/png"
-            );
-
-          }
-          catch(error){
-
-            URL.revokeObjectURL(
-              url
-            );
-
-            reject(error);
-
-          }
-
-        };
-
-
-      img.onerror =
-        function(){
-
-          URL.revokeObjectURL(
-            url
-          );
-
-          reject(
-            new Error(
-              "Image impossible à charger"
-            )
-          );
-
-        };
-
-
-      img.src=url;
+      reader.readAsDataURL(file);
 
     }
   );
@@ -1667,9 +1240,9 @@ function preprocessImage(file){
 }
 
 
-/* =====================================================
+/* ======================================================
    OCR
-===================================================== */
+====================================================== */
 
 async function scanImage(file){
 
@@ -1678,45 +1251,35 @@ async function scanImage(file){
       "scanStatus"
     );
 
-
   const type =
     document.getElementById(
       "docType"
     ).value;
 
 
+  status.textContent =
+    "🔎 Lecture du document…";
+
+
   try{
-
-    status.textContent =
-      "🔎 Amélioration de la photo…";
-
-
-    const processed =
-      await preprocessImage(file);
-
-
-    status.textContent =
-      "🔎 Lecture du document…";
-
 
     const result =
       await Tesseract.recognize(
-        processed,
+        file,
         "fra+eng",
         {
 
           logger:function(message){
 
             if(
-              message.status===
+              message.status ===
               "recognizing text"
             ){
 
               const percent =
                 Math.round(
-                  (message.progress||0)*100
+                  (message.progress || 0) * 100
                 );
-
 
               status.textContent =
                 "🔎 Lecture : "+
@@ -1732,14 +1295,13 @@ async function scanImage(file){
 
 
     const text =
-      result.data.text||"";
+      result.data.text || "";
 
 
     console.log(
-      "===== OCR ====="
+      "OCR TEXT:",
+      text
     );
-
-    console.log(text);
 
 
     processOCRDates(
@@ -1747,27 +1309,26 @@ async function scanImage(file){
       type
     );
 
-  }
-  catch(error){
+
+  }catch(error){
 
     console.error(error);
 
-
     status.textContent =
-      "⚠ Le document a été chargé, mais la lecture automatique a échoué.";
+      "Le document est chargé. Vérifiez les dates manuellement.";
 
   }
 
 }
 
 
-/* =====================================================
+/* ======================================================
    NORMALISATION
-===================================================== */
+====================================================== */
 
 function normalizeText(text){
 
-  return String(text||"")
+  return String(text || "")
     .replace(/\r/g," ")
     .replace(/\n/g," ")
     .replace(/\s+/g," ")
@@ -1776,202 +1337,181 @@ function normalizeText(text){
 }
 
 
-/* =====================================================
+/* ======================================================
    MOIS FRANÇAIS
-===================================================== */
+====================================================== */
 
-const MONTHS={
+const FRENCH_MONTHS={
 
   janvier:"01",
+  janv:"01",
+
   février:"02",
   fevrier:"02",
+  févr:"02",
+  fevr:"02",
+
   mars:"03",
+
   avril:"04",
+  avr:"04",
+
   mai:"05",
+
   juin:"06",
+
   juillet:"07",
+  juil:"07",
+
   août:"08",
   aout:"08",
+
   septembre:"09",
+  sept:"09",
+
   octobre:"10",
+  oct:"10",
+
   novembre:"11",
+  nov:"11",
+
   décembre:"12",
-  decembre:"12"
+  decembre:"12",
+  déc:"12",
+  dec:"12"
 
 };
 
 
-/* =====================================================
-   DATE MOIS LETTRES
-===================================================== */
+/* ======================================================
+   CONVERTIR DATE
+====================================================== */
 
-function writtenDateToISO(
-  day,
-  month,
-  year
-){
+function makeISO(day,month,year){
 
-  let clean =
+  const d =
+    String(day)
+      .replace(/^0+/,"")
+      .padStart(2,"0");
+
+  let m =
     String(month)
-      .toLowerCase();
+      .toLowerCase()
+      .trim();
 
-
-  clean =
-    clean.normalize("NFD")
-      .replace(
-        /[\u0300-\u036f]/g,
-        ""
-      );
-
-
-  let monthNumber=null;
-
-
-  for(
-    const key in MONTHS
-  ){
-
-    let k =
-      key.normalize("NFD")
-        .replace(
-          /[\u0300-\u036f]/g,
-          ""
-        );
-
-
-    if(k===clean){
-
-      monthNumber =
-        MONTHS[key];
-
-      break;
-
-    }
-
+  if(FRENCH_MONTHS[m]){
+    m=FRENCH_MONTHS[m];
   }
 
+  m =
+    String(m)
+      .replace(/^0+/,"")
+      .padStart(2,"0");
 
-  if(!monthNumber){
+  const y =
+    String(year);
+
+
+  if(
+    !/^(0[1-9]|1[0-2])$/.test(m) ||
+    !/^(0[1-9]|[12]\d|3[01])$/.test(d) ||
+    !/^20\d{2}$/.test(y)
+  ){
 
     return null;
 
   }
 
 
-  return (
-    year+
-    "-"+
-    monthNumber+
-    "-"+
-    String(day).padStart(2,"0")
-  );
+  return `${y}-${m}-${d}`;
 
 }
 
 
-/* =====================================================
-   TOUTES DATES NUMERIQUES
-===================================================== */
+/* ======================================================
+   EXTRACTION TOUTES LES DATES
+====================================================== */
 
-function extractNumericDates(text){
+function extractDates(text){
 
   const normalized =
     normalizeText(text);
-
 
   const dates=[];
 
   let match;
 
 
-  const r1 =
+  /* 07/05/2029 */
+
+  const numeric =
     /\b(0?[1-9]|[12]\d|3[01])[\/\-.](0?[1-9]|1[0-2])[\/\-.](20\d{2})\b/g;
 
 
   while(
-    (match=r1.exec(normalized))
-    !==null
-  ){
-
-    dates.push(
-
-      match[3]+
-      "-"+
-      String(match[2]).padStart(2,"0")+
-      "-"+
-      String(match[1]).padStart(2,"0")
-
-    );
-
-  }
-
-
-  const r2 =
-    /\b(20\d{2})[\/\-.](0?[1-9]|1[0-2])[\/\-.](0?[1-9]|[12]\d|3[01])\b/g;
-
-
-  while(
-    (match=r2.exec(normalized))
-    !==null
-  ){
-
-    dates.push(
-
-      match[1]+
-      "-"+
-      String(match[2]).padStart(2,"0")+
-      "-"+
-      String(match[3]).padStart(2,"0")
-
-    );
-
-  }
-
-
-  return [
-    ...new Set(dates)
-  ];
-
-}
-
-
-/* =====================================================
-   DATES MOIS LETTRES
-===================================================== */
-
-function extractWrittenDates(text){
-
-  const normalized =
-    normalizeText(text);
-
-
-  const dates=[];
-
-
-  const regex =
-    /\b(0?[1-9]|[12]\d|3[01])\s+(janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre)\s+(20\d{2})\b/gi;
-
-
-  let match;
-
-
-  while(
-    (match=regex.exec(normalized))
+    (match=numeric.exec(normalized))
     !==null
   ){
 
     const iso =
-      writtenDateToISO(
+      makeISO(
         match[1],
         match[2],
         match[3]
       );
 
+    if(iso){
+      dates.push(iso);
+    }
+
+  }
+
+
+  /* 2029-05-07 */
+
+  const reverse =
+    /\b(20\d{2})[\/\-.](0?[1-9]|1[0-2])[\/\-.](0?[1-9]|[12]\d|3[01])\b/g;
+
+
+  while(
+    (match=reverse.exec(normalized))
+    !==null
+  ){
+
+    const iso =
+      makeISO(
+        match[3],
+        match[2],
+        match[1]
+      );
 
     if(iso){
-
       dates.push(iso);
+    }
 
+  }
+
+
+  /* 07 mai 2029 */
+
+  const french =
+    /\b(0?[1-9]|[12]\d|3[01])\s+(janvier|janv|février|fevrier|févr|fevr|mars|avril|avr|mai|juin|juillet|juil|août|aout|septembre|sept|octobre|oct|novembre|nov|décembre|decembre|déc|dec)\s+(20\d{2})\b/gi;
+
+
+  while(
+    (match=french.exec(normalized))
+    !==null
+  ){
+
+    const iso =
+      makeISO(
+        match[1],
+        match[2],
+        match[3]
+      );
+
+    if(iso){
+      dates.push(iso);
     }
 
   }
@@ -1984,29 +1524,10 @@ function extractWrittenDates(text){
 }
 
 
-/* =====================================================
-   TOUT DATES
-===================================================== */
-
-function extractDates(text){
-
-  return [
-    ...new Set([
-
-      ...extractNumericDates(text),
-
-      ...extractWrittenDates(text)
-
-    ])
-
-  ];
-
-}
-
-
-/* =====================================================
-   DATE APRES JUSQU'AU
-===================================================== */
+/* ======================================================
+   DATE APRÈS JUSQU'AU
+   مهم جدًا للـREVTC
+====================================================== */
 
 function extractUntilDate(text){
 
@@ -2014,58 +1535,59 @@ function extractUntilDate(text){
     normalizeText(text);
 
 
-  let match;
+  /*
+     يسمح بـ:
+     jusqu'au 07/05/2029
+     jusqu'au 07 mai 2029
+     jusqu’au 7 mai 2029
+  */
+
+  const regex =
+    /jusqu['’]?\s*au\s*(?:le\s*)?(\d{1,2})\s*(?:[\/\-.]\s*(\d{1,2})\s*[\/\-.]\s*(20\d{2})|(?:janvier|janv|février|fevrier|févr|fevr|mars|avril|avr|mai|juin|juillet|juil|août|aout|septembre|sept|octobre|oct|novembre|nov|décembre|decembre|déc|dec)\s+(20\d{2}))/i;
+
+
+  const match =
+    normalized.match(regex);
+
+
+  if(!match){
+    return null;
+  }
 
 
   /*
-   * 07/05/2029
-   */
+     الشكل الرقمي
+  */
 
-  const numeric =
-    /(?:valable\s*)?(?:jusqu['’]?\s*au|jusqu['’]?\s*'au|jusqu['’]?au)[^0-9]{0,80}(0?[1-9]|[12]\d|3[01])[\/\-.](0?[1-9]|1[0-2])[\/\-.](20\d{2})/i;
+  if(match[2] && match[3]){
 
-
-  match =
-    normalized.match(
-      numeric
-    );
-
-
-  if(match){
-
-    return (
-
-      match[3]+
-      "-"+
-      String(match[2]).padStart(2,"0")+
-      "-"+
-      String(match[1]).padStart(2,"0")
-
+    return makeISO(
+      match[1],
+      match[2],
+      match[3]
     );
 
   }
 
 
   /*
-   * 07 mai 2029
-   */
+     شكل اسم الشهر
+  */
 
-  const written =
-    /(?:valable\s*)?(?:jusqu['’]?\s*au|jusqu['’]?\s*'au|jusqu['’]?au)[^0-9]{0,80}(0?[1-9]|[12]\d|3[01])\s+(janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre)\s+(20\d{2})/i;
-
-
-  match =
-    normalized.match(
-      written
-    );
+  const after =
+    normalized
+      .slice(match.index)
+      .match(
+        /\d{1,2}\s+(janvier|janv|février|fevrier|févr|fevr|mars|avril|avr|mai|juin|juillet|juil|août|aout|septembre|sept|octobre|oct|novembre|nov|décembre|decembre|déc|dec)\s+(20\d{2})/i
+      );
 
 
-  if(match){
+  if(after){
 
-    return writtenDateToISO(
+    return makeISO(
       match[1],
-      match[2],
-      match[3]
+      after[1],
+      after[2]
     );
 
   }
@@ -2076,9 +1598,9 @@ function extractUntilDate(text){
 }
 
 
-/* =====================================================
-   DATE APRES EFFET DU
-===================================================== */
+/* ======================================================
+   DATE DU DOCUMENT
+====================================================== */
 
 function extractEffectiveDate(text){
 
@@ -2086,50 +1608,44 @@ function extractEffectiveDate(text){
     normalizeText(text);
 
 
-  let match;
+  const regex =
+    /(?:effet\s+du|à\s+effet\s+du|inscrit.*?le)\s*(\d{1,2})\s*(?:[\/\-.]\s*(\d{1,2})\s*[\/\-.]\s*(20\d{2})|(?:janvier|janv|février|fevrier|févr|fevr|mars|avril|avr|mai|juin|juillet|juil|août|aout|septembre|sept|octobre|oct|novembre|nov|décembre|decembre|déc|dec)\s+(20\d{2}))/i;
 
 
-  const numeric =
-    /(?:effet\s*du|à\s*effet\s*du)[^0-9]{0,60}(0?[1-9]|[12]\d|3[01])[\/\-.](0?[1-9]|1[0-2])[\/\-.](20\d{2})/i;
+  const match =
+    normalized.match(regex);
 
 
-  match =
-    normalized.match(
-      numeric
-    );
+  if(!match){
+    return null;
+  }
 
 
-  if(match){
+  if(match[2] && match[3]){
 
-    return (
-
-      match[3]+
-      "-"+
-      String(match[2]).padStart(2,"0")+
-      "-"+
-      String(match[1]).padStart(2,"0")
-
+    return makeISO(
+      match[1],
+      match[2],
+      match[3]
     );
 
   }
 
 
-  const written =
-    /(?:effet\s*du|à\s*effet\s*du)[^0-9]{0,60}(0?[1-9]|[12]\d|3[01])\s+(janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre)\s+(20\d{2})/i;
+  const after =
+    normalized
+      .slice(match.index)
+      .match(
+        /\d{1,2}\s+(janvier|janv|février|fevrier|févr|fevr|mars|avril|avr|mai|juin|juillet|juil|août|aout|septembre|sept|octobre|oct|novembre|nov|décembre|decembre|déc|dec)\s+(20\d{2})/i
+      );
 
 
-  match =
-    normalized.match(
-      written
-    );
+  if(after){
 
-
-  if(match){
-
-    return writtenDateToISO(
+    return makeISO(
       match[1],
-      match[2],
-      match[3]
+      after[1],
+      after[2]
     );
 
   }
@@ -2140,14 +1656,11 @@ function extractEffectiveDate(text){
 }
 
 
-/* =====================================================
+/* ======================================================
    OCR → FORMULAIRE
-===================================================== */
+====================================================== */
 
-function processOCRDates(
-  text,
-  type
-){
+function processOCRDates(text,type){
 
   const status =
     document.getElementById(
@@ -2159,58 +1672,47 @@ function processOCRDates(
     extractDates(text);
 
 
-  console.log(
-    "DATES :",
-    allDates
-  );
-
-
-  /* REVTC */
+  /* ====================================================
+     REVTC
+  ==================================================== */
 
   if(type==="REVTC"){
-
-    const effective =
-      extractEffectiveDate(text);
-
 
     const until =
       extractUntilDate(text);
 
 
+    const effective =
+      extractEffectiveDate(text);
+
+
     /*
-     * Date d'effet
-     */
+       الأولوية القصوى لتاريخ jusqu'au
+    */
 
-    if(effective){
+    if(until){
 
-      document
-        .getElementById(
-          "documentDate"
-        )
-        .value =
-          effective;
+      document.getElementById(
+        "expiry"
+      ).value=until;
 
     }
 
 
-    /*
-     * Date jusqu'au
-     */
+    if(effective){
+
+      document.getElementById(
+        "documentDate"
+      ).value=effective;
+
+    }
+
 
     if(until){
 
-      document
-        .getElementById(
-          "expiry"
-        )
-        .value =
-          until;
-
-
       status.textContent =
-        "✓ REVTC reconnu : expiration le "+
+        "✓ REVTC détecté. Expiration : "+
         formatDate(until);
-
 
       return;
 
@@ -2218,38 +1720,27 @@ function processOCRDates(
 
 
     /*
-     * Si le texte « jusqu'au »
-     * n'a pas été reconnu,
-     * on prend la date future
-     * la plus éloignée.
-     */
+       إذا لم يجد jusqu'au
+       نحاول اختيار تاريخ مستقبلي
+    */
 
     const future =
       allDates
-        .filter(
-          isTodayOrFuture
-        )
+        .filter(isTodayOrFuture)
         .sort();
 
 
     if(future.length){
 
       const selected =
-        future[
-          future.length-1
-        ];
+        future[future.length-1];
 
-
-      document
-        .getElementById(
-          "expiry"
-        )
-        .value =
-          selected;
-
+      document.getElementById(
+        "expiry"
+      ).value=selected;
 
       status.textContent =
-        "✓ Date REVTC détectée : "+
+        "✓ Date détectée : "+
         formatDate(selected)+
         ". Vérifiez-la.";
 
@@ -2259,26 +1750,24 @@ function processOCRDates(
 
 
     status.textContent =
-      "⚠ REVTC lu, mais aucune date n'a pu être extraite.";
+      "Document REVTC lu. Vérifiez les dates manuellement.";
 
     return;
 
   }
 
 
-  /* CARTE GRISE */
+  /* ====================================================
+     CARTE GRISE
+  ==================================================== */
 
   if(type==="Carte grise"){
 
     if(allDates.length){
 
-      document
-        .getElementById(
-          "documentDate"
-        )
-        .value =
-          allDates[0];
-
+      document.getElementById(
+        "documentDate"
+      ).value=allDates[0];
 
       status.textContent =
         "✓ Date détectée : "+
@@ -2288,7 +1777,7 @@ function processOCRDates(
     }else{
 
       status.textContent =
-        "Carte grise lue. Vérifiez la date manuellement.";
+        "Document lu. Aucune date détectée.";
 
     }
 
@@ -2297,80 +1786,69 @@ function processOCRDates(
   }
 
 
-  /* AUTRES */
+  /* ====================================================
+     AUTRES
+  ==================================================== */
 
   if(allDates.length){
 
     const future =
       allDates
-        .filter(
-          isTodayOrFuture
-        )
+        .filter(isTodayOrFuture)
         .sort();
 
 
     const selected =
       future.length
-      ?future[future.length-1]
-      :allDates[
-        allDates.length-1
-      ];
+      ? future[future.length-1]
+      : allDates[allDates.length-1];
 
 
-    document
-      .getElementById(
+    if(type==="Assurance" ||
+       type==="Macaron VTC" ||
+       type==="Contrôle technique" ||
+       type==="Autre"){
+
+      document.getElementById(
         "expiry"
-      )
-      .value =
-        selected;
+      ).value=selected;
+
+    }
 
 
     status.textContent =
       "✓ Date détectée : "+
       formatDate(selected)+
-      ". Vérifiez-la.";
+      ". Vérifiez-la avant d'enregistrer.";
 
   }else{
 
     status.textContent =
-      "Document lu, mais aucune date détectée.";
+      "Document lu, mais aucune date détectée. Vérifiez manuellement.";
 
   }
 
 }
 
 
-/* =====================================================
+/* ======================================================
    DATES
-===================================================== */
+====================================================== */
 
 function dateObject(iso){
 
   if(!iso){
-
     return null;
-
   }
-
 
   const d =
     new Date(
       iso+"T00:00:00"
     );
 
-
-  if(
-    isNaN(
-      d.getTime()
-    )
-  ){
-
-    return null;
-
-  }
-
-
-  return d;
+  return isNaN(d.getTime())
+    ? null
+    : d;
 
 }
 
@@ -2380,13 +1858,9 @@ function formatDate(iso){
   const d =
     dateObject(iso);
 
-
   if(!d){
-
     return "-";
-
   }
-
 
   return d.toLocaleDateString(
     "fr-FR"
@@ -2400,22 +1874,16 @@ function daysUntil(iso){
   const d =
     dateObject(iso);
 
-
   if(!d){
-
     return null;
-
   }
-
 
   const today =
     new Date();
 
-
   today.setHours(
     0,0,0,0
   );
-
 
   return Math.ceil(
     (d-today)/86400000
@@ -2429,41 +1897,29 @@ function isTodayOrFuture(iso){
   const days =
     daysUntil(iso);
 
-
-  return (
-    days!==null &&
-    days>=0
-  );
+  return days!==null &&
+         days>=0;
 
 }
 
 
-/* =====================================================
+/* ======================================================
    STATUT
-===================================================== */
+====================================================== */
 
 function statusClass(days){
 
   if(days===null){
-
     return "neutral";
-
   }
-
 
   if(days<0){
-
     return "bad";
-
   }
-
 
   if(days<=30){
-
     return "warning";
-
   }
-
 
   return "good";
 
@@ -2473,80 +1929,51 @@ function statusClass(days){
 function statusText(days){
 
   if(days===null){
-
     return "Aucune date d'expiration";
-
   }
-
 
   if(days<0){
 
-    return (
-      "⚠ Expiré depuis "+
+    return "⚠ Expiré depuis "+
       Math.abs(days)+
-      " jour(s)"
-    );
+      " jour(s)";
 
   }
-
 
   if(days===0){
-
     return "⚠ Expire aujourd'hui";
-
   }
-
 
   if(days===1){
-
     return "⚠ Expire demain";
-
   }
 
-
-  return (
-    "Expire dans "+
+  return "Expire dans "+
     days+
-    " jours"
-  );
+    " jours";
 
 }
 
 
-/* =====================================================
-   SECURITE HTML
-===================================================== */
+/* ======================================================
+   PROTECTION HTML
+====================================================== */
 
 function escapeHtml(text){
 
-  return String(text||"")
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-    .replace(
-      /</g,
-      "&lt;"
-    )
-    .replace(
-      />/g,
-      "&gt;"
-    )
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+  return String(text || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-/* =====================================================
+/* ======================================================
    CARTE DOCUMENT
-===================================================== */
+====================================================== */
 
 function documentCard(doc){
 
@@ -2562,9 +1989,7 @@ function documentCard(doc){
 
     css =
       statusClass(
-        daysUntil(
-          doc.expiry
-        )
+        daysUntil(doc.expiry)
       );
 
   }
@@ -2582,9 +2007,7 @@ function documentCard(doc){
 
   html +=
     `<div class="doc-title">
-      📄 ${escapeHtml(
-        doc.name||doc.type
-      )}
+      📄 ${escapeHtml(doc.name || doc.type)}
     </div>`;
 
 
@@ -2593,9 +2016,7 @@ function documentCard(doc){
     html +=
       `<div class="doc-line">
         📅 Date du document :
-        <b>${formatDate(
-          doc.documentDate
-        )}</b>
+        <b>${formatDate(doc.documentDate)}</b>
       </div>`;
 
   }
@@ -2604,19 +2025,13 @@ function documentCard(doc){
   if(hasExpiry){
 
     const days =
-      daysUntil(
-        doc.expiry
-      );
-
+      daysUntil(doc.expiry);
 
     html +=
       `<div class="doc-line">
         ⏳ Date d'expiration :
-        <b>${formatDate(
-          doc.expiry
-        )}</b>
+        <b>${formatDate(doc.expiry)}</b>
       </div>`;
-
 
     html +=
       `<div class="doc-status">
@@ -2637,9 +2052,7 @@ function documentCard(doc){
 
     html +=
       `<div class="file-name">
-        📎 ${escapeHtml(
-          doc.fileName
-        )}
+        📎 ${escapeHtml(doc.fileName)}
       </div>`;
 
   }
@@ -2655,9 +2068,7 @@ function documentCard(doc){
       `<button
         class="btn secondary"
         onclick="viewDocument(${doc.id})">
-
         👁 Voir
-
       </button>`;
 
   }
@@ -2667,18 +2078,12 @@ function documentCard(doc){
     `<button
       class="btn danger"
       onclick="deleteDocument(${doc.id})">
-
       🗑 Supprimer
-
     </button>`;
 
 
   html +=
-    `</div>`;
-
-
-  html +=
-    `</div>`;
+    `</div></div>`;
 
 
   return html;
@@ -2686,9 +2091,9 @@ function documentCard(doc){
 }
 
 
-/* =====================================================
+/* ======================================================
    RENDU
-===================================================== */
+====================================================== */
 
 function render(){
 
@@ -2696,7 +2101,6 @@ function render(){
     document.getElementById(
       "vehicleTitle"
     );
-
 
   const sub =
     document.getElementById(
@@ -2708,16 +2112,16 @@ function render(){
 
     const vehicleName =
       (
-        state.vehicle.make+
-        " "+
-        state.vehicle.model
-      ).trim();
-
+        state.vehicle.make || ""
+      )+
+      " "+
+      (
+        state.vehicle.model || ""
+      );
 
     title.textContent =
-      vehicleName ||
+      vehicleName.trim() ||
       "Mon véhicule VTC";
-
 
     sub.textContent =
       state.vehicle.plate ||
@@ -2727,28 +2131,19 @@ function render(){
     document.getElementById(
       "make"
     ).value =
-      state.vehicle.make||"";
+      state.vehicle.make || "";
 
 
     document.getElementById(
       "model"
     ).value =
-      state.vehicle.model||"";
+      state.vehicle.model || "";
 
 
     document.getElementById(
       "plate"
     ).value =
-      state.vehicle.plate||"";
-
-  }else{
-
-    title.textContent =
-      "Mon véhicule VTC";
-
-
-    sub.textContent =
-      "Ajoutez votre véhicule";
+      state.vehicle.plate || "";
 
   }
 
@@ -2758,19 +2153,17 @@ function render(){
 
 
   docs.sort(
-    function(a,b){
+    (a,b)=>{
 
       const da =
-        a.hasExpiry&&a.expiry
-        ?daysUntil(a.expiry)
-        :999999;
-
+        a.hasExpiry && a.expiry
+        ? daysUntil(a.expiry)
+        : 999999;
 
       const db =
-        b.hasExpiry&&b.expiry
-        ?daysUntil(b.expiry)
-        :999999;
-
+        b.hasExpiry && b.expiry
+        ? daysUntil(b.expiry)
+        : 999999;
 
       return da-db;
 
@@ -2778,43 +2171,43 @@ function render(){
   );
 
 
-  const home =
+  const homeDocs =
     document.getElementById(
       "homeDocs"
     );
 
 
-  const list =
+  const docList =
     document.getElementById(
       "docList"
     );
 
 
-  if(home){
+  if(homeDocs){
 
-    home.innerHTML =
+    homeDocs.innerHTML =
       docs.length
-      ?docs
-        .slice(0,3)
-        .map(documentCard)
-        .join("")
-      :`<div class="empty">
-        Aucun document enregistré.
-       </div>`;
+      ? docs
+          .slice(0,3)
+          .map(documentCard)
+          .join("")
+      : `<div class="empty">
+           Aucun document enregistré.
+         </div>`;
 
   }
 
 
-  if(list){
+  if(docList){
 
-    list.innerHTML =
+    docList.innerHTML =
       docs.length
-      ?docs
-        .map(documentCard)
-        .join("")
-      :`<div class="empty">
-        Aucun document enregistré.
-       </div>`;
+      ? docs
+          .map(documentCard)
+          .join("")
+      : `<div class="empty">
+           Aucun document enregistré.
+         </div>`;
 
   }
 
@@ -2824,9 +2217,9 @@ function render(){
 }
 
 
-/* =====================================================
+/* ======================================================
    ALERTES
-===================================================== */
+====================================================== */
 
 function renderAlerts(){
 
@@ -2836,34 +2229,17 @@ function renderAlerts(){
     );
 
 
-  if(!box){
-
-    return;
-
-  }
-
-
   const docs =
     state.docs
       .filter(
-        function(doc){
-
-          return (
-            doc.hasExpiry===true &&
-            !!doc.expiry
-          );
-
-        }
+        doc=>
+          doc.hasExpiry===true &&
+          !!doc.expiry
       )
       .sort(
-        function(a,b){
-
-          return (
-            daysUntil(a.expiry)-
-            daysUntil(b.expiry)
-          );
-
-        }
+        (a,b)=>
+          daysUntil(a.expiry) -
+          daysUntil(b.expiry)
       );
 
 
@@ -2873,7 +2249,7 @@ function renderAlerts(){
       `<div class="info">
         ✓ Aucune date d'expiration
         à surveiller actuellement.
-       </div>`;
+      </div>`;
 
     return;
 
@@ -2883,93 +2259,82 @@ function renderAlerts(){
   let html="";
 
 
-  docs.forEach(
-    function(doc){
+  docs.forEach(doc=>{
 
-      const days =
-        daysUntil(
-          doc.expiry
-        );
+    const days =
+      daysUntil(doc.expiry);
 
 
-      if(days<0){
+    if(days<0){
 
-        html +=
-          `<div class="alert-card red">
+      html +=
+        `<div class="alert-card red">
 
-            <div class="alert-title">
-              🔴 ${escapeHtml(
-                doc.name||doc.type
-              )}
-            </div>
+          <div class="alert-title">
+            🔴 ${escapeHtml(
+              doc.name || doc.type
+            )}
+          </div>
 
-            <div class="alert-text">
-              Document expiré depuis
-              <b>${Math.abs(days)}
-              jour(s)</b>.
-              <br>
-              Date :
-              <b>${formatDate(
-                doc.expiry
-              )}</b>
-            </div>
+          <div class="alert-text">
+            Document expiré depuis
+            <b>${Math.abs(days)} jour(s)</b>.
+            <br>
+            Date :
+            <b>${formatDate(doc.expiry)}</b>
+          </div>
 
-          </div>`;
-
-      }
-
-      else if(days<=30){
-
-        html +=
-          `<div class="alert-card yellow">
-
-            <div class="alert-title">
-              🟡 ${escapeHtml(
-                doc.name||doc.type
-              )}
-            </div>
-
-            <div class="alert-text">
-              Expire dans
-              <b>${days} jour(s)</b>.
-              <br>
-              Date :
-              <b>${formatDate(
-                doc.expiry
-              )}</b>
-            </div>
-
-          </div>`;
-
-      }
-
-      else{
-
-        html +=
-          `<div class="alert-card green">
-
-            <div class="alert-title">
-              🟢 ${escapeHtml(
-                doc.name||doc.type
-              )}
-            </div>
-
-            <div class="alert-text">
-              Valide jusqu'au
-              <b>${formatDate(
-                doc.expiry
-              )}</b>.
-              <br>
-              Encore
-              <b>${days} jour(s)</b>.
-            </div>
-
-          </div>`;
-
-      }
+        </div>`;
 
     }
-  );
+
+    else if(days<=30){
+
+      html +=
+        `<div class="alert-card yellow">
+
+          <div class="alert-title">
+            🟡 ${escapeHtml(
+              doc.name || doc.type
+            )}
+          </div>
+
+          <div class="alert-text">
+            Expire dans
+            <b>${days} jour(s)</b>.
+            <br>
+            Date :
+            <b>${formatDate(doc.expiry)}</b>
+          </div>
+
+        </div>`;
+
+    }
+
+    else{
+
+      html +=
+        `<div class="alert-card green">
+
+          <div class="alert-title">
+            🟢 ${escapeHtml(
+              doc.name || doc.type
+            )}
+          </div>
+
+          <div class="alert-text">
+            Valide jusqu'au
+            <b>${formatDate(doc.expiry)}</b>.
+            <br>
+            Encore
+            <b>${days} jour(s)</b>.
+          </div>
+
+        </div>`;
+
+    }
+
+  });
 
 
   box.innerHTML=html;
@@ -2977,17 +2342,15 @@ function renderAlerts(){
 }
 
 
-/* =====================================================
+/* ======================================================
    SUPPRIMER
-===================================================== */
+====================================================== */
 
 function deleteDocument(id){
 
-  if(
-    !confirm(
-      "Supprimer définitivement ce document ?"
-    )
-  ){
+  if(!confirm(
+    "Supprimer définitivement ce document ?"
+  )){
 
     return;
 
@@ -2996,11 +2359,7 @@ function deleteDocument(id){
 
   state.docs =
     state.docs.filter(
-      function(doc){
-
-        return doc.id!==id;
-
-      }
+      doc=>doc.id!==id
     );
 
 
@@ -3011,26 +2370,19 @@ function deleteDocument(id){
 }
 
 
-/* =====================================================
-   VOIR DOCUMENT
-===================================================== */
+/* ======================================================
+   VOIR
+====================================================== */
 
 function viewDocument(id){
 
   const doc =
     state.docs.find(
-      function(item){
-
-        return item.id===id;
-
-      }
+      item=>item.id===id
     );
 
 
-  if(
-    !doc||
-    !doc.fileData
-  ){
+  if(!doc || !doc.fileData){
 
     alert(
       "Le fichier n'est pas disponible."
@@ -3051,7 +2403,7 @@ function viewDocument(id){
   if(!win){
 
     alert(
-      "Le navigateur a bloqué l'ouverture."
+      "Le navigateur a bloqué l'ouverture du document."
     );
 
     return;
@@ -3061,55 +2413,35 @@ function viewDocument(id){
 
   if(
     doc.fileType &&
-    doc.fileType.startsWith(
-      "image/"
-    )
+    doc.fileType.startsWith("image/")
   ){
 
     win.document.write(
-
       `<html>
-
-      <head>
-
-      <meta name="viewport"
-      content="width=device-width,initial-scale=1">
-
-      <title>
-      ${escapeHtml(
-        doc.name||doc.type
-      )}
-      </title>
-
-      <style>
-
-      body{
-        margin:0;
-        background:#111;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        min-height:100vh;
-      }
-
-      img{
-        max-width:100%;
-        max-height:100vh;
-        object-fit:contain;
-      }
-
-      </style>
-
-      </head>
-
-      <body>
-
-      <img src="${doc.fileData}">
-
-      </body>
-
+        <head>
+          <meta name="viewport"
+                content="width=device-width,initial-scale=1">
+          <title>Document</title>
+          <style>
+            body{
+              margin:0;
+              background:#111;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              min-height:100vh;
+            }
+            img{
+              max-width:100%;
+              max-height:100vh;
+              object-fit:contain;
+            }
+          </style>
+        </head>
+        <body>
+          <img src="${doc.fileData}">
+        </body>
       </html>`
-
     );
 
   }else{
@@ -3122,9 +2454,9 @@ function viewDocument(id){
 }
 
 
-/* =====================================================
-   RESET
-===================================================== */
+/* ======================================================
+   RESET FORMULAIRE
+====================================================== */
 
 function resetAddForm(){
 
@@ -3169,13 +2501,12 @@ function resetAddForm(){
 
 
   currentFile=null;
-
   currentFileData=null;
 
 
   document.getElementById(
     "docType"
-  ).value="Assurance";
+  ).value="REVTC";
 
 
   updateDocumentForm();
@@ -3183,18 +2514,16 @@ function resetAddForm(){
 }
 
 
-/* =====================================================
+/* ======================================================
    ENREGISTRER DOCUMENT
-===================================================== */
+====================================================== */
 
 function saveDoc(){
 
   const type =
-    document
-      .getElementById(
-        "docType"
-      )
-      .value;
+    document.getElementById(
+      "docType"
+    ).value;
 
 
   const config =
@@ -3202,34 +2531,24 @@ function saveDoc(){
 
 
   const name =
-    document
-      .getElementById(
-        "docName"
-      )
-      .value
-      .trim();
+    document.getElementById(
+      "docName"
+    ).value.trim();
 
 
   const documentDate =
-    document
-      .getElementById(
-        "documentDate"
-      )
-      .value;
+    document.getElementById(
+      "documentDate"
+    ).value;
 
 
   const expiry =
-    document
-      .getElementById(
-        "expiry"
-      )
-      .value;
+    document.getElementById(
+      "expiry"
+    ).value;
 
 
-  if(
-    config.hasExpiry &&
-    !expiry
-  ){
+  if(config.hasExpiry && !expiry){
 
     alert(
       "Veuillez indiquer la date d'expiration."
@@ -3245,7 +2564,7 @@ function saveDoc(){
     if(!documentDate){
 
       alert(
-        "Pour le REVTC, veuillez indiquer la date d'inscription."
+        "Veuillez indiquer la date d'inscription du REVTC."
       );
 
       return;
@@ -3256,7 +2575,7 @@ function saveDoc(){
     if(!expiry){
 
       alert(
-        "Pour le REVTC, veuillez indiquer la date « jusqu'au »."
+        "Veuillez indiquer la date « jusqu'au » du REVTC."
       );
 
       return;
@@ -3273,42 +2592,40 @@ function saveDoc(){
     type:type,
 
     name:
-      name||type,
+      name || type,
 
     documentDate:
       config.hasDocumentDate
-      ?(documentDate||null)
-      :null,
+      ? (documentDate || null)
+      : null,
 
     hasExpiry:
       config.hasExpiry,
 
     expiry:
       config.hasExpiry
-      ?expiry
-      :null,
+      ? expiry
+      : null,
 
     fileName:
       currentFile
-      ?currentFile.name
-      :null,
+      ? currentFile.name
+      : null,
 
     fileType:
       currentFile
-      ?currentFile.type
-      :null,
+      ? currentFile.type
+      : null,
 
     fileData:
-      currentFileData||null
+      currentFileData || null
 
   };
 
 
   state.docs.push(doc);
 
-
   saveState();
-
 
   alert(
     "✓ Document enregistré correctement."
@@ -3322,9 +2639,9 @@ function saveDoc(){
 }
 
 
-/* =====================================================
+/* ======================================================
    INITIALISATION
-===================================================== */
+====================================================== */
 
 updateDocumentForm();
 
