@@ -1,20 +1,816 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171329"><title>VTC ASSIST</title><style>*{box-sizing:border-box}html,body{margin:0;background:#f4f4f8;font-family:Arial,sans-serif;color:#181824}body{padding-bottom:78px}.page{display:none;min-height:100vh;background:#fff;padding:28px 18px 95px}.page.active{display:block}.top,.bar,.vehicle,.heading,.offer{display:flex;align-items:center}.top{justify-content:space-between}.top small{font-weight:900;color:#7045df}.top h1{margin:4px 0 18px}.avatar{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#efe9ff;color:#7045df;font-weight:bold}.vehicle,.offer{padding:15px;border:1px solid #ecebf2;border-radius:16px;gap:12px;margin:12px 0}.vehicle span,.offer span{font-size:30px}.vehicle div,.offer div{flex:1}.vehicle button,.bar button,.heading button{border:0;background:none;color:#7045df;font-size:26px}.vehicle small,.offer small{display:block;color:#777;margin-top:4px}.heading{justify-content:space-between;margin-top:24px}.heading h2{font-size:18px}.heading button{font-size:13px}.empty,.privacy,.alert{padding:14px;border-radius:13px;margin:12px 0;background:#f6f5fa;color:#686779;font-size:13px}.cta{width:100%;border:0;border-radius:14px;background:#7446e8;color:#fff;padding:15px;font-weight:bold;font-size:15px;margin:12px 0}.cta:disabled{opacity:.55}.alert{background:#fff1f1;color:#a22}.alert.good{background:#eefaf2;color:#187443}.benefit{background:linear-gradient(135deg,#6540d5,#9b5be9);color:#fff;padding:18px;border-radius:18px;margin-top:20px;display:flex;justify-content:space-between;align-items:center}.benefit small{opacity:.8}.benefit b{display:block;margin-top:6px}.benefit p{font-size:12px;margin-bottom:0;opacity:.85}.benefit strong{font-size:40px}.bar{gap:8px}.bar h2{margin:0}label{display:block;font-size:13px;font-weight:bold;margin:20px 0}input,select{width:100%;display:block;margin-top:7px;padding:14px;border:1px solid #dedde8;border-radius:12px;background:#fff;font-size:16px}.camera{padding:20px;text-align:center;border:2px dashed #cfc8ea;border-radius:15px;color:#7045df}.camera input{border:0;padding:8px 0}.muted{color:#747386;line-height:1.5}.doc{padding:14px;border:1px solid #ecebf2;border-radius:14px;margin:10px 0}.doc b,.doc small{display:block}.doc small{color:#777;margin-top:5px}.doc .name{font-size:12px;color:#666;word-break:break-all;margin-top:6px}.pill{float:right;padding:5px 9px;border-radius:20px;background:#eaf8ef;color:#187443;font-size:11px}.pill.warn{background:#fff0dd;color:#a65d00}.pill.bad{background:#ffe7e7;color:#a22}.offer strong{display:block;color:#7045df;margin-top:8px}.ocr{padding:14px;border-radius:13px;background:#f1edff;color:#5130a7;margin:12px 0;font-size:13px;display:none}.ocr.show{display:block}.ocr pre{white-space:pre-wrap;max-height:180px;overflow:auto;font-size:11px;color:#444;background:#fff;padding:8px;border-radius:8px}#scanStatus{font-size:13px;margin:8px 0;color:#555}nav{position:fixed;z-index:10;bottom:0;left:0;right:0;height:66px;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid #e9e8ef}nav button{border:0;background:#fff;color:#6f6e7c;font-size:21px}nav small{display:block;font-size:10px;margin-top:3px}@media(min-width:600px){#app,nav{max-width:460px;margin:auto}nav{left:50%;transform:translateX(-50%);width:460px}.page{box-shadow:0 0 30px #ddd}}</style></head><body><main id="app">
-<section class="page active" id="home"><div class="top"><div><small>VTC ASSIST</small><h1>Bonjour 👋</h1></div><div class="avatar">V</div></div><div class="vehicle"><span>🚘</span><div><b id="vehicleTitle">Mon véhicule VTC</b><small id="vehicleSub">Ajoutez votre véhicule</small></div><button onclick="go('vehicle')">›</button></div><div class="heading"><h2>Mes documents</h2><button onclick="go('docs')">Voir tout</button></div><div id="docPreview" class="empty">Aucun document enregistré.</div><button class="cta" onclick="go('add')">＋ Ajouter un document</button><div id="alertBox" class="alert good">✓ Ajoutez un document pour activer les alertes.</div><div class="benefit" onclick="go('benefits')"><div><small>AVANTAGES VTC</small><b>Économisez chez nos partenaires</b><p>Garages • Pneus • Lavage • Assurance</p></div><strong>%</strong></div></section>
-<section class="page" id="vehicle"><div class="bar"><button onclick="go('home')">‹</button><h2>Mon véhicule</h2></div><label>Marque<input id="make" placeholder="Peugeot"></label><label>Modèle<input id="model" placeholder="508"></label><label>Immatriculation<input id="plate" placeholder="AB-123-CD"></label><label>Kilométrage<input id="km" type="number" placeholder="120000"></label><button class="cta" onclick="saveVehicle()">Enregistrer</button></section>
-<section class="page" id="docs"><div class="bar"><button onclick="go('home')">‹</button><h2>Mes documents</h2></div><div id="docList"></div><button class="cta" onclick="go('add')">＋ Ajouter un document</button></section>
-<section class="page" id="add"><div class="bar"><button onclick="go('docs')">‹</button><h2>Ajouter un document</h2></div><p class="muted">Photographiez le document ou choisissez une image. L'application essaiera de lire automatiquement les dates.</p><label>Type<select id="type"><option>Assurance automobile</option><option>Contrôle technique</option><option>Carte professionnelle VTC</option><option>Carte grise</option><option>Permis de conduire</option></select></label><label>Date d'échéance<input id="expiry" type="date"></label><label class="camera">📷 Photographier / choisir un document<input id="file" type="file" accept="image/*" capture="environment"></label><div id="scanStatus"></div><div id="ocrBox" class="ocr"><b>Lecture du document</b><div id="ocrText"></div></div><div class="privacy">🔒 Prototype : l'image n'est pas enregistrée par l'application. Les informations extraites sont conservées localement.</div><button id="saveDocBtn" class="cta" onclick="saveDoc()">Enregistrer</button></section>
-<section class="page" id="alerts"><div class="bar"><button onclick="go('home')">‹</button><h2>Mes alertes</h2></div><div id="alertsList"></div></section><section class="page" id="benefits"><div class="bar"><button onclick="go('home')">‹</button><h2>Avantages VTC</h2></div><p class="muted">Des tarifs négociés pour les membres.</p><div class="offer"><span>🔧</span><div><b>Garage partenaire</b><small>Entretien & réparations</small><strong>-15%</strong></div></div><div class="offer"><span>🛞</span><div><b>Pneus partenaire</b><small>Montage & équilibrage</small><strong>Tarif VTC</strong></div></div><div class="offer"><span>🧽</span><div><b>Lavage partenaire</b><small>Intérieur & extérieur</small><strong>Prix membre</strong></div></div></section></main>
-<nav><button onclick="go('home')">⌂<small>Accueil</small></button><button onclick="go('docs')">▣<small>Documents</small></button><button onclick="go('alerts')">♧<small>Alertes</small></button><button onclick="go('benefits')">✦<small>Avantages</small></button></nav>
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script><script>
-const K="vtc-mobile-v2";let s=JSON.parse(localStorage.getItem(K)||'{"vehicle":null,"docs":[]}');const save=()=>localStorage.setItem(K,JSON.stringify(s));
-function go(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');render();scrollTo(0,0)}
-function days(d){let a=new Date();a.setHours(0,0,0,0);return Math.ceil((new Date(d+'T00:00:00')-a)/86400000)}
-function saveVehicle(){s.vehicle={make:make.value.trim(),model:model.value.trim(),plate:plate.value.trim(),km:km.value};save();go('home')}
-function findDates(t){let r=[],m,re=/\b(0?[1-9]|[12]\d|3[01])[\/.\-](0?[1-9]|1[0-2])[\/.\-](20\d{2})\b/g;while((m=re.exec(t)))r.push(m[3]+'-'+String(m[2]).padStart(2,'0')+'-'+String(m[1]).padStart(2,'0'));re=/\b(20\d{2})[\/.\-](0?[1-9]|1[0-2])[\/.\-](0?[1-9]|[12]\d|3[01])\b/g;while((m=re.exec(t)))r.push(m[1]+'-'+String(m[2]).padStart(2,'0')+'-'+String(m[3]).padStart(2,'0'));return [...new Set(r)]}
-function extractExpiry(t){let ds=findDates(t),now=new Date();now.setHours(0,0,0,0);let future=ds.filter(x=>new Date(x+'T00:00:00')>=now).sort();return future[future.length-1]||null}
-async function scanDocument(f){if(!f)return;if(f.type==='application/pdf'){scanStatus.textContent='⚠️ Pour la lecture automatique, utilisez une photo du document.';return}saveDocBtn.disabled=true;ocrBox.classList.add('show');scanStatus.textContent='⏳ Lecture du document…';ocrText.textContent='Préparation…';try{let r=await Tesseract.recognize(f,'fra',{logger:m=>{if(m.status==='recognizing text')scanStatus.textContent='⏳ Lecture : '+Math.round((m.progress||0)*100)+' %'}});let raw=r.data.text||'';ocrText.innerHTML='<pre>'+raw.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</pre>';let d=extractExpiry(raw);if(d){expiry.value=d;scanStatus.textContent='✅ Date détectée : '+new Date(d+'T00:00:00').toLocaleDateString('fr-FR')}else scanStatus.textContent='⚠️ Aucune date d’échéance certaine détectée. Vérifiez-la.';s.pending={name:f.name,ocr:raw.slice(0,5000),detected:d}}catch(e){console.error(e);scanStatus.textContent='❌ Lecture impossible. Saisissez la date manuellement.'}finally{saveDocBtn.disabled=false}}
-file.addEventListener('change',()=>scanDocument(file.files[0]));
-function saveDoc(){if(!expiry.value)return alert('Choisissez ou vérifiez la date d’échéance.');let p=s.pending||{};s.docs.push({type:type.value,expiry:expiry.value,name:file.files[0]?.name||'Photo/document',ocr:p.ocr||'',detected:!!p.detected});delete s.pending;save();type.value='Assurance automobile';expiry.value='';file.value='';scanStatus.textContent='';ocrBox.classList.remove('show');go('docs')}
-function card(d){let n=days(d.expiry),c=n<0?'bad':n<=30?'warn':'',ss=n<0?'Expiré':n===0?"Aujourd'hui":n+' jours';return `<div class="doc"><span class="pill ${c}">${ss}</span><b>📄 ${d.type}</b><small>Échéance : ${new Date(d.expiry+'T00:00:00').toLocaleDateString('fr-FR')}</small><div class="name">${d.name||''}${d.detected?' • date détectée automatiquement':''}</div></div>`}
-function render(){let ds=[...s.docs].sort((a,b)=>days(a.expiry)-days(b.expiry));docList.innerHTML=ds.map(card).join('')||'<div class="empty">Aucun document.</div>';docPreview.innerHTML=ds.slice(0,3).map(card).join('')||'Aucun document enregistré.';alertsList.innerHTML=ds.filter(d=>days(d.expiry)<=90).map(card).join('')||'<div class="alert good">✓ Aucune alerte urgente.</div>';let n=ds[0]&&days(ds[0].expiry);alertBox.className='alert '+(!ds[0]||n>30?'good':'');alertBox.innerHTML=!ds[0]?'✓ Ajoutez un document pour activer les alertes.':n<0?`🔴 ${ds[0].type} est expiré.`:`🔔 ${ds[0].type} expire dans <b>${n} jours</b>.`;if(s.vehicle){vehicleTitle.textContent=(s.vehicle.make+' '+s.vehicle.model).trim()||'Mon véhicule VTC';vehicleSub.textContent=s.vehicle.plate||'Véhicule enregistré';make.value=s.vehicle.make||'';model.value=s.vehicle.model||'';plate.value=s.vehicle.plate||'';km.value=s.vehicle.km||''}}
-render();</script></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#7147e8">
+<title>VTC ASSIST</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#fff;
+  color:#222;
+}
+header{
+  padding:28px 24px 18px;
+}
+h1{
+  margin:0;
+  font-size:32px;
+}
+.subtitle{
+  color:#777;
+  margin-top:5px;
+}
+.container{
+  padding:0 24px 100px;
+}
+.card{
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:20px;
+  padding:20px;
+  margin:16px 0;
+  box-shadow:0 3px 14px rgba(0,0,0,.06);
+}
+.vehicle{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.vehicle-icon{
+  font-size:38px;
+}
+.vehicle-title{
+  font-size:18px;
+  font-weight:bold;
+}
+.muted{
+  color:#888;
+  margin-top:5px;
+}
+h2{
+  font-size:21px;
+  margin:8px 0 15px;
+}
+.btn{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:16px;
+  font-size:17px;
+  margin-top:10px;
+  cursor:pointer;
+}
+.primary{
+  background:#7147e8;
+  color:#fff;
+}
+.secondary{
+  background:#f1eff9;
+  color:#5d3ac7;
+}
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
+  margin:7px 0 12px;
+}
+.offer{
+  background:linear-gradient(120deg,#7546e8,#9b55df);
+  color:white;
+  border-radius:20px;
+  padding:22px;
+  margin-top:20px;
+}
+.offer h2{
+  margin:0 0 8px;
+}
+.offer p{
+  margin:5px 0;
+}
+.alert-info{
+  background:#eefaf2;
+  color:#277044;
+  border-radius:15px;
+  padding:15px;
+  margin:15px 0;
+}
+.doc{
+  border:1px solid #eee;
+  border-radius:15px;
+  padding:16px;
+  margin:10px 0;
+}
+.bad{
+  background:#fff0f0;
+  border-color:#f2b5b5;
+}
+.warning{
+  background:#fff8df;
+  border-color:#eed37a;
+}
+.good{
+  background:#effaf1;
+  border-color:#b7dfbd;
+}
+.pill{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  background:#eee;
+  margin-right:5px;
+  font-size:13px;
+}
+nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:72px;
+  background:#fff;
+  border-top:1px solid #eee;
+  display:flex;
+  z-index:20;
+}
+nav button{
+  flex:1;
+  border:0;
+  background:#fff;
+  color:#777;
+  font-size:13px;
+}
+nav button.active{
+  color:#7147e8;
+}
+.page{
+  display:none;
+}
+.page.active{
+  display:block;
+}
+.scan-box{
+  text-align:center;
+  padding:10px 0;
+}
+#scanStatus{
+  margin-top:12px;
+  color:#666;
+  font-size:14px;
+}
+.preview{
+  max-width:100%;
+  max-height:250px;
+  border-radius:15px;
+  margin-top:12px;
+  display:none;
+}
+.empty{
+  color:#888;
+  background:#f7f6fa;
+  border-radius:15px;
+  padding:18px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ACCUEIL -->
+<section class="page active" id="home">
+
+<header>
+  <h1>Bonjour 👋</h1>
+  <div class="subtitle">VTC ASSIST</div>
+</header>
+
+<div class="container">
+
+  <div class="card vehicle">
+    <div class="vehicle-icon">🚘</div>
+    <div>
+      <div class="vehicle-title" id="vehicleTitle">
+        Mon véhicule VTC
+      </div>
+      <div class="muted" id="vehicleSub">
+        Ajoutez votre véhicule
+      </div>
+    </div>
+  </div>
+
+  <h2>Mes documents</h2>
+
+  <div id="homeDocs"></div>
+
+  <button class="btn primary" onclick="go('add')">
+    ＋ Ajouter un document
+  </button>
+
+  <div class="alert-info">
+    ✓ Ajoutez un document pour activer les alertes.
+  </div>
+
+  <div class="offer">
+    <h2>AVANTAGES VTC</h2>
+    <p><b>Économisez chez nos partenaires</b></p>
+    <p>Garages · Pneus · Lavage · Assurance</p>
+  </div>
+
+</div>
+</section>
+
+
+<!-- VEHICULE -->
+<section class="page" id="vehicle">
+
+<header>
+  <h1>🚘 Mon véhicule</h1>
+  <div class="subtitle">Informations de votre VTC</div>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<label>Marque</label>
+<input id="make" placeholder="Ex : Peugeot">
+
+<label>Modèle</label>
+<input id="model" placeholder="Ex : 508">
+
+<label>Immatriculation</label>
+<input id="plate" placeholder="Ex : AB-123-CD">
+
+<button class="btn primary" onclick="saveVehicle()">
+  Enregistrer le véhicule
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- DOCUMENTS -->
+<section class="page" id="documents">
+
+<header>
+  <h1>📄 Mes documents</h1>
+  <div class="subtitle">Tous vos documents VTC</div>
+</header>
+
+<div class="container">
+
+<div id="docList"></div>
+
+<button class="btn primary" onclick="go('add')">
+  ＋ Ajouter un document
+</button>
+
+</div>
+</section>
+
+
+<!-- AJOUT DOCUMENT -->
+<section class="page" id="add">
+
+<header>
+  <h1>＋ Ajouter un document</h1>
+  <div class="subtitle">Choisissez comment ajouter votre document</div>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>1. Choisir un fichier</h2>
+
+<input
+  id="filePicker"
+  type="file"
+  accept="image/*,.pdf"
+  style="display:none"
+>
+
+<button
+  class="btn secondary"
+  onclick="document.getElementById('filePicker').click()">
+  📁 Choisir un fichier
+</button>
+
+
+<h2 style="margin-top:25px">2. Photographier le document</h2>
+
+<input
+  id="cameraPicker"
+  type="file"
+  accept="image/*"
+  capture="environment"
+  style="display:none"
+>
+
+<button
+  class="btn secondary"
+  onclick="document.getElementById('cameraPicker').click()">
+  📷 Prendre une photo
+</button>
+
+<div class="scan-box">
+  <img id="preview" class="preview">
+  <div id="scanStatus"></div>
+</div>
+
+</div>
+
+
+<div class="card">
+
+<label>Type de document</label>
+
+<select id="docType" style="
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:16px;
+">
+
+<option value="Assurance">Assurance</option>
+<option value="Carte VTC">Carte VTC</option>
+<option value="Contrôle technique">Contrôle technique</option>
+<option value="Carte grise">Carte grise</option>
+<option value="Autre">Autre</option>
+
+</select>
+
+<label style="display:block;margin-top:15px">
+Date d'expiration
+</label>
+
+<input id="expiry" type="date">
+
+<label>Nom du document</label>
+<input id="docName" placeholder="Ex : Assurance 2026">
+
+<button
+  id="saveDocBtn"
+  class="btn primary"
+  onclick="saveDoc()"
+  disabled>
+  Enregistrer le document
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- ALERTES -->
+<section class="page" id="alerts">
+
+<header>
+  <h1>🔔 Mes alertes</h1>
+  <div class="subtitle">Surveillez les expirations</div>
+</header>
+
+<div class="container">
+
+<div id="alertsList"></div>
+
+</div>
+</section>
+
+
+<!-- NAVIGATION -->
+<nav>
+
+<button onclick="go('home')" id="navHome">
+  🏠<br><small>Accueil</small>
+</button>
+
+<button onclick="go('documents')" id="navDocs">
+  📄<br><small>Documents</small>
+</button>
+
+<button onclick="go('alerts')" id="navAlerts">
+  🔔<br><small>Alertes</small>
+</button>
+
+<button onclick="go('vehicle')" id="navVehicle">
+  🚘<br><small>Véhicule</small>
+</button>
+
+</nav>
+
+
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+<script>
+
+const KEY = "vtc-assist-v3";
+
+let state = JSON.parse(
+  localStorage.getItem(KEY) || '{"vehicle":null,"docs":[]}'
+);
+
+function saveState(){
+  localStorage.setItem(KEY,JSON.stringify(state));
+}
+
+
+function go(id){
+
+  document.querySelectorAll(".page")
+    .forEach(p=>p.classList.remove("active"));
+
+  const page=document.getElementById(id);
+
+  if(page){
+    page.classList.add("active");
+  }
+
+  render();
+  window.scrollTo(0,0);
+}
+
+
+function saveVehicle(){
+
+  const make=document.getElementById("make").value.trim();
+  const model=document.getElementById("model").value.trim();
+  const plate=document.getElementById("plate").value.trim();
+
+  if(!make && !model && !plate){
+    alert("Veuillez remplir les informations du véhicule.");
+    return;
+  }
+
+  state.vehicle={
+    make,
+    model,
+    plate
+  };
+
+  saveState();
+  render();
+
+  alert("Véhicule enregistré.");
+  go("home");
+}
+
+
+function daysUntil(date){
+
+  const today=new Date();
+  today.setHours(0,0,0,0);
+
+  const d=new Date(date+"T00:00:00");
+
+  return Math.ceil(
+    (d-today)/86400000
+  );
+}
+
+
+function statusClass(days){
+
+  if(days<0) return "bad";
+  if(days<=30) return "warning";
+  return "good";
+}
+
+
+function statusText(days){
+
+  if(days<0){
+    return "Expiré";
+  }
+
+  if(days===0){
+    return "Expire aujourd'hui";
+  }
+
+  if(days===1){
+    return "Expire demain";
+  }
+
+  return "Expire dans "+days+" jours";
+}
+
+
+function card(doc){
+
+  const n=daysUntil(doc.expiry);
+
+  const c=statusClass(n);
+
+  return `
+    <div class="doc ${c}">
+      <div>
+        <span class="pill">${escapeHtml(doc.type)}</span>
+        <b>📄 ${escapeHtml(doc.name || doc.type)}</b>
+      </div>
+
+      <p>
+        Date d'expiration :
+        <b>${formatDate(doc.expiry)}</b>
+      </p>
+
+      <p><b>${statusText(n)}</b></p>
+
+      <button
+        class="btn secondary"
+        onclick="deleteDoc(${doc.id})">
+        Supprimer
+      </button>
+    </div>
+  `;
+}
+
+
+function formatDate(d){
+
+  if(!d) return "-";
+
+  const x=new Date(d+"T00:00:00");
+
+  return x.toLocaleDateString("fr-FR");
+}
+
+
+function escapeHtml(text){
+
+  return String(text || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function render(){
+
+  if(state.vehicle){
+
+    document.getElementById("vehicleTitle").textContent =
+      (state.vehicle.make+" "+state.vehicle.model).trim()
+      || "Mon véhicule VTC";
+
+    document.getElementById("vehicleSub").textContent =
+      state.vehicle.plate || "Véhicule enregistré";
+
+    if(document.getElementById("make"))
+      document.getElementById("make").value=state.vehicle.make || "";
+
+    if(document.getElementById("model"))
+      document.getElementById("model").value=state.vehicle.model || "";
+
+    if(document.getElementById("plate"))
+      document.getElementById("plate").value=state.vehicle.plate || "";
+
+  }else{
+
+    document.getElementById("vehicleTitle").textContent =
+      "Mon véhicule VTC";
+
+    document.getElementById("vehicleSub").textContent =
+      "Ajoutez votre véhicule";
+  }
+
+
+  const docs=[...state.docs]
+    .sort((a,b)=>daysUntil(a.expiry)-daysUntil(b.expiry));
+
+
+  document.getElementById("homeDocs").innerHTML =
+    docs.length
+    ? docs.slice(0,3).map(card).join("")
+    : '<div class="empty">Aucun document enregistré.</div>';
+
+
+  document.getElementById("docList").innerHTML =
+    docs.length
+    ? docs.map(card).join("")
+    : '<div class="empty">Aucun document enregistré.</div>';
+
+
+  const alerts=docs.filter(
+    d=>daysUntil(d.expiry)<=30
+  );
+
+
+  document.getElementById("alertsList").innerHTML =
+    alerts.length
+    ? alerts.map(card).join("")
+    : '<div class="alert-info">✓ Aucune alerte actuellement.</div>';
+}
+
+
+function deleteDoc(id){
+
+  if(!confirm("Supprimer ce document ?"))
+    return;
+
+  state.docs=state.docs.filter(
+    d=>d.id!==id
+  );
+
+  saveState();
+  render();
+}
+
+
+function extractDates(text){
+
+  const patterns=[
+
+    /\b(0?[1-9]|[12]\d|3[01])[\/\-\.](0?[1-9]|1[0-2])[\/\-\.](20\d{2})\b/g,
+
+    /\b(20\d{2})[\/\-\.](0?[1-9]|1[0-2])[\/\-\.](0?[1-9]|[12]\d|3[01])\b/g
+
+  ];
+
+  let dates=[];
+
+  for(const re of patterns){
+
+    let m;
+
+    while((m=re.exec(text))!==null){
+
+      let y,mo,d;
+
+      if(m[1].length===4){
+
+        y=m[1];
+        mo=String(m[2]).padStart(2,"0");
+        d=String(m[3]).padStart(2,"0");
+
+      }else{
+
+        d=String(m[1]).padStart(2,"0");
+        mo=String(m[2]).padStart(2,"0");
+        y=m[3];
+      }
+
+      const iso=`${y}-${mo}-${d}`;
+
+      const dt=new Date(iso+"T00:00:00");
+
+      if(!isNaN(dt.getTime())){
+        dates.push(iso);
+      }
+    }
+  }
+
+  return [...new Set(dates)];
+}
+
+
+async function scanDocument(file){
+
+  if(!file) return;
+
+  const status=document.getElementById("scanStatus");
+  const preview=document.getElementById("preview");
+  const saveBtn=document.getElementById("saveDocBtn");
+
+  saveBtn.disabled=true;
+
+  status.textContent="Lecture du document en cours…";
+
+  if(file.type.startsWith("image/")){
+
+    preview.src=URL.createObjectURL(file);
+    preview.style.display="block";
+
+    try{
+
+      const result=await Tesseract.recognize(
+        file,
+        "fra+eng",
+        {
+          logger:m=>{
+            if(m.status==="recognizing text"){
+              status.textContent=
+                "Lecture : "+
+                Math.round((m.progress||0)*100)+
+                "%";
+            }
+          }
+        }
+      );
+
+      const text=result.data.text || "";
+
+      const dates=extractDates(text);
+
+      if(dates.length){
+
+        const future=dates
+          .filter(d=>new Date(d)>=new Date())
+          .sort();
+
+        const selected=
+          future[0] || dates.sort().pop();
+
+        document.getElementById("expiry").value=selected;
+
+        status.textContent=
+          "✓ Date détectée : "+
+          formatDate(selected);
+
+      }else{
+
+        status.textContent=
+          "Document lu, mais aucune date détectée. Veuillez saisir la date.";
+      }
+
+    }catch(error){
+
+      console.error(error);
+
+      status.textContent=
+        "Impossible de lire automatiquement le document. Saisissez la date manuellement.";
+    }
+
+  }else{
+
+    status.textContent=
+      "PDF sélectionné. Saisissez la date d'expiration manuellement.";
+  }
+
+  saveBtn.disabled=false;
+}
+
+
+document.getElementById("filePicker")
+.addEventListener("change",function(){
+
+  if(this.files && this.files[0]){
+    scanDocument(this.files[0]);
+  }
+
+});
+
+
+document.getElementById("cameraPicker")
+.addEventListener("change",function(){
+
+  if(this.files && this.files[0]){
+    scanDocument(this.files[0]);
+  }
+
+});
+
+
+function saveDoc(){
+
+  const type=document.getElementById("docType").value;
+  const expiry=document.getElementById("expiry").value;
+  const name=document.getElementById("docName").value.trim();
+
+  if(!expiry){
+
+    alert("Veuillez indiquer la date d'expiration.");
+    return;
+  }
+
+  state.docs.push({
+
+    id:Date.now(),
+
+    type,
+
+    expiry,
+
+    name:name || type
+  });
+
+  saveState();
+
+  document.getElementById("expiry").value="";
+  document.getElementById("docName").value="";
+
+  document.getElementById("preview").style.display="none";
+  document.getElementById("scanStatus").textContent="";
+
+  alert("Document enregistré.");
+
+  go("documents");
+}
+
+
+render();
+
+</script>
+
+</body>
+</html>
